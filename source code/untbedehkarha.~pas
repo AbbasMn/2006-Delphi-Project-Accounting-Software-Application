@@ -1,0 +1,51 @@
+unit untbedehkarha;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, se_controls, KsSkinButtons, KsSkinLabels, StdCtrls, ExtCtrls,
+  SUIForm, SUIButton;
+
+type
+  Tfrm_bedehkarha = class(TForm)
+    suifactorshakhs: TsuiForm;
+    GroupBox1: TGroupBox;
+    suiButton1: TsuiButton;
+    suiButton6: TsuiButton;
+    procedure SeSkinButton5Click(Sender: TObject);
+    procedure suiButton1Click(Sender: TObject);
+    procedure suiButton6Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frm_bedehkarha: Tfrm_bedehkarha;
+
+implementation
+
+uses unt_datamodule2, unt_frm_shakhs_bedehka;
+
+{$R *.dfm}
+
+procedure Tfrm_bedehkarha.SeSkinButton5Click(Sender: TObject);
+begin
+  close;
+end;
+
+procedure Tfrm_bedehkarha.suiButton1Click(Sender: TObject);
+begin
+  DataModule2.adotasfie.SQL.Text :='select * from bedeh_bestan where bedeh_kol>0';
+ DataModule2.adotasfie.Open;
+ frm_shakhs_bedehkar.QuickRep1.Preview;
+end;
+
+procedure Tfrm_bedehkarha.suiButton6Click(Sender: TObject);
+begin
+  close;
+end;
+
+end.

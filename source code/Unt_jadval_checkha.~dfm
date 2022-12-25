@@ -1,0 +1,247 @@
+object frm_jadval_checkha: Tfrm_jadval_checkha
+  Left = 54
+  Top = 128
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
+  Caption = ' '#1670#1705#1607#1575#1610' '#1583#1585#1610#1575#1601#1578#1610
+  ClientHeight = 499
+  ClientWidth = 787
+  Color = clBtnFace
+  Constraints.MinHeight = 50
+  Constraints.MinWidth = 130
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poDesktopCenter
+  Scaled = False
+  OnShow = FormShow
+  DesignSize = (
+    787
+    499)
+  PixelsPerInch = 96
+  TextHeight = 13
+  object GroupBox2: TGroupBox
+    Left = 557
+    Top = 2
+    Width = 230
+    Height = 60
+    Anchors = [akTop, akRight]
+    BiDiMode = bdRightToLeft
+    Caption = #1580#1587#1578#1580#1608' '#1576#1585' '#1575#1587#1575#1587' '#1588#1605#1575#1585#1607' '#1670#1705
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentBiDiMode = False
+    ParentFont = False
+    TabOrder = 0
+    DesignSize = (
+      230
+      60)
+    object Label2: TLabel
+      Left = 153
+      Top = 25
+      Width = 70
+      Height = 13
+      Anchors = [akTop, akRight]
+      Caption = ' '#1588#1605#1575#1585#1607' '#1670#1705'    :'
+      Font.Charset = ARABIC_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Esearch2: TEdit
+      Left = 6
+      Top = 22
+      Width = 142
+      Height = 22
+      Anchors = [akTop, akRight]
+      Font.Charset = ARABIC_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      MaxLength = 20
+      ParentFont = False
+      TabOrder = 0
+      OnChange = Esearch2Change
+      OnKeyPress = Esearch2KeyPress
+    end
+  end
+  object GroupBox1: TGroupBox
+    Left = 17
+    Top = 2
+    Width = 230
+    Height = 60
+    BiDiMode = bdRightToLeft
+    Caption = #1580#1587#1578#1580#1608' '#1576#1585' '#1575#1587#1575#1587' '#1606#1575#1605' '#1589#1575#1581#1576' '#1670#1705
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentBiDiMode = False
+    ParentFont = False
+    TabOrder = 1
+    object Label1: TLabel
+      Left = 155
+      Top = 26
+      Width = 66
+      Height = 13
+      Caption = #1589#1575#1581#1576' '#1670#1705'    :'
+      Font.Charset = ARABIC_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object esearch: TEdit
+      Left = 4
+      Top = 22
+      Width = 144
+      Height = 22
+      Font.Charset = ARABIC_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      MaxLength = 30
+      ParentFont = False
+      TabOrder = 0
+      OnChange = esearchChange
+    end
+  end
+  object suiDBGrid1: TsuiDBGrid
+    Left = 2
+    Top = 73
+    Width = 783
+    Height = 420
+    TabStop = False
+    Anchors = [akLeft, akTop, akRight, akBottom]
+    BiDiMode = bdRightToLeft
+    BorderStyle = bsNone
+    Color = clBtnFace
+    Ctl3D = True
+    DataSource = Dskharidha
+    FixedColor = clMenu
+    Font.Charset = ARABIC_CHARSET
+    Font.Color = clBlack
+    Font.Height = -15
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection]
+    ParentBiDiMode = False
+    ParentCtl3D = False
+    ParentFont = False
+    ReadOnly = True
+    TabOrder = 2
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clBlack
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+    UIStyle = DeepBlue
+    BorderColor = clBlack
+    FocusedColor = clNavy
+    SelectedColor = clYellow
+    FontColor = clBlack
+    TitleFontColor = clBlack
+    FixedBGColor = clMenu
+    BGColor = clBtnFace
+    Columns = <
+      item
+        Alignment = taCenter
+        Expanded = False
+        FieldName = 'shahrforoshande'
+        Title.Alignment = taCenter
+        Title.Caption = #1589#1575#1581#1576' '#1670#1705
+        Width = 120
+        Visible = True
+      end
+      item
+        Alignment = taCenter
+        Expanded = False
+        FieldName = 'sh_hesab'
+        Title.Alignment = taCenter
+        Title.Caption = #1576#1575#1606#1705' '#1588#1593#1576#1607' '#1588#1605#1575#1585#1607' '#1581#1587#1575#1576
+        Width = 120
+        Visible = True
+      end
+      item
+        Alignment = taCenter
+        Expanded = False
+        FieldName = 'mablagh_check'
+        Title.Alignment = taCenter
+        Title.Caption = #1605#1576#1604#1594' '#1670#1705
+        Width = 90
+        Visible = True
+      end
+      item
+        Alignment = taCenter
+        Expanded = False
+        FieldName = 'sh_check'
+        Title.Alignment = taCenter
+        Title.Caption = #1588#1605#1575#1585#1607' '#1670#1705
+        Width = 110
+        Visible = True
+      end
+      item
+        Alignment = taCenter
+        Expanded = False
+        FieldName = 'tarikh_kharid'
+        Title.Alignment = taCenter
+        Title.Caption = #1578#1575#1585#1610#1582' '#1670#1705
+        Width = 74
+        Visible = True
+      end
+      item
+        Alignment = taCenter
+        Expanded = False
+        FieldName = 'tarikh_kharid'
+        Title.Alignment = taCenter
+        Title.Caption = ' '#1578#1575#1585#1610#1582' '#1601#1585#1608#1588
+        Width = 80
+        Visible = True
+      end
+      item
+        Alignment = taCenter
+        Expanded = False
+        FieldName = 'pass'
+        Title.Alignment = taCenter
+        Title.Caption = #1662#1575#1587' '#1588#1583#1606
+        Visible = True
+      end>
+  end
+  object dxToolButton12: TdxToolButton
+    Left = 0
+    Top = 0
+    Hint = #1601#1575#1705#1578#1608#1585
+    Align = alLeft
+    ParentShowHint = False
+    ShowHint = True
+    OnClick = dxToolButton12Click
+    ToolType = ttRestore
+  end
+  object dxToolButton1: TdxToolButton
+    Left = 15
+    Top = 0
+    Hint = #1575#1585#1587#1575#1604' '#1576#1607' '#1662#1585#1610#1606#1578#1585
+    Align = alLeft
+    ParentShowHint = False
+    ShowHint = True
+    OnClick = dxToolButton1Click
+    ToolType = ttArrowLeft
+  end
+  object Dskharidha: TDataSource
+    DataSet = DataM_final.ADOQ_T_pardakht_check_forosh
+    Left = 296
+    Top = 192
+  end
+end

@@ -1,0 +1,220 @@
+unit Unteditgeymatjenspas;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, DB, Grids, DBGrids, SUIDBCtrls, ExtCtrls, SUIForm, StdCtrls,
+  PDJ_XPC, Mask, SUIButton, DBCtrls, SUIImagePanel, SUIGroupBox;
+
+type
+  Tfrm_editgeymatjens = class(TForm)
+    DataSource1: TDataSource;
+    suiGroupBox1: TsuiGroupBox;
+    Label7: TLabel;
+    esearch: TEdit;
+    suiDBGrid1: TsuiDBGrid;
+    b_eslahe_geymate_forosh1: TButton;
+    l_type: TLabel;
+    L_name_sherkat: TLabel;
+    Button2: TButton;
+    Button12123: TButton;
+    l_review: TLabel;
+    Label1: TLabel;
+    esearch_cod: TEdit;
+    b_eslahe_geymate_kharid: TButton;
+    b_eslahe_geymate_forosh: TButton;
+    procedure showanbar(s:string);
+    procedure FormShow(Sender: TObject);
+    procedure esearchChange(Sender: TObject);
+    procedure EgeymatjadidKeyPress(Sender: TObject; var Key: Char);
+    procedure e_kerayeKeyPress(Sender: TObject; var Key: Char);
+    procedure E_darsad_sodKeyPress(Sender: TObject; var Key: Char);
+    procedure E_tedadKeyPress(Sender: TObject; var Key: Char);
+    procedure b_eslahe_geymate_forosh1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure Button12123Click(Sender: TObject);
+    procedure esearch_codChange(Sender: TObject);
+    procedure b_eslahe_geymate_kharidClick(Sender: TObject);
+    procedure b_eslahe_geymate_foroshClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frm_editgeymatjens: Tfrm_editgeymatjens;
+
+implementation
+
+uses Unt_dmanbar, Untdmanbarexit, Taghvim, unt_main, Untdmlistha,
+  unt_login, unt_vrode_geymate_jadid, unt_emale_darsadie_geymat_roye_hame,
+  unt_show_tozihate_geymat, unt_eslahe_geymate_kharide_jens,
+  unt_vrode_geymate_koli_jadid;
+
+{$R *.dfm}
+procedure Tfrm_editgeymatjens.showanbar(s:string);
+begin
+
+ if s='' then
+ begin
+    Dmanbar.ADOeditgeymat.SQL.Text:='select * from Tanbar_jens_kolli order by calaname,calacod';
+    Dmanbar.ADOeditgeymat.Open;
+ end
+ else
+ begin
+    Dmanbar.ADOeditgeymat.SQL.Text:='select * from Tanbar_jens_kolli where shakhs_sherkat='+QuotedStr(trim(s))+
+    ' order by calaname,calacod';
+    Dmanbar.ADOeditgeymat.Open;
+ end;
+end;
+///////////////////
+
+
+procedure Tfrm_editgeymatjens.FormShow(Sender: TObject);
+begin
+  esearch.Text:='';
+  frm_editgeymatjens.WindowState:=wsMaximized;
+end;
+
+procedure Tfrm_editgeymatjens.esearchChange(Sender: TObject);
+begin
+  Dmanbar.ADOeditgeymat.Locate('calaname',esearch.Text,[loPartialKey]);
+end;
+
+
+
+procedure Tfrm_editgeymatjens.EgeymatjadidKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+ if not (key in['0'..'9',#8]) then
+   key:=#0;
+end;
+
+procedure Tfrm_editgeymatjens.e_kerayeKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+ if not (key in['0'..'9',#8]) then
+   key:=#0;
+end;
+
+procedure Tfrm_editgeymatjens.E_darsad_sodKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+ if not (key in['0'..'9',#8]) then
+   key:=#0;
+end;
+
+procedure Tfrm_editgeymatjens.E_tedadKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+ if not (key in['0'..'9',#8]) then
+   key:=#0;
+end;
+
+
+procedure Tfrm_editgeymatjens.b_eslahe_geymate_forosh1Click(Sender: TObject);
+begin
+
+if Dmanbar.ADOeditgeymat.RecordCount>0 then
+begin
+
+l_review.Caption:=Dmanbar.ADOeditgeymatid.AsString;
+
+ if (l_type.Caption='sherkat_taki')  then
+ begin
+
+  frm_vrode_geymate_jadid.L_type.Caption:=l_type.Caption;
+  frm_vrode_geymate_jadid.ShowModal;
+ end;
+ if(l_type.Caption='jens_taki') then
+ begin
+  frm_vrode_geymate_jadid.L_type.Caption:=l_type.Caption;
+  frm_vrode_geymate_jadid.ShowModal;
+ end;
+
+ if(l_type.Caption='sherkat_hame_darsadi')  then
+ begin
+  frm_emale_darsadie_geymat_roye_hame.L_type.Caption:='sherkat_hame_darsadi';
+  frm_emale_darsadie_geymat_roye_hame.ShowModal;
+ end;
+ if(l_type.Caption='hame_darsadi')  then
+ begin
+  frm_emale_darsadie_geymat_roye_hame.L_type.Caption:='hame_darsadi';
+  frm_emale_darsadie_geymat_roye_hame.ShowModal;
+ end;
+
+   Dmanbar.ADOeditgeymat.Locate('id',l_review.Caption,[loPartialKey]);
+end;
+ 
+end;
+
+procedure Tfrm_editgeymatjens.Button2Click(Sender: TObject);
+begin
+  frm_show_tozihate_geymat.DBMemo_virayesh.Visible:=true;
+  frm_show_tozihate_geymat.DBMemo_tozihate_forosh_forosh.Visible:=false;
+  frm_show_tozihate_geymat.DBMemo_tozihate_forosh_virayesh.Visible:=false;
+
+  frm_show_tozihate_geymat.ShowModal;
+end;
+
+procedure Tfrm_editgeymatjens.Button12123Click(Sender: TObject);
+begin
+  frm_show_tozihate_geymat.DBMemo_virayesh.Visible:=false;
+  frm_show_tozihate_geymat.DBMemo_tozihate_forosh_forosh.Visible:=false;
+  frm_show_tozihate_geymat.DBMemo_tozihate_forosh_virayesh.Visible:=true;
+  frm_show_tozihate_geymat.ShowModal;
+end;
+
+procedure Tfrm_editgeymatjens.esearch_codChange(Sender: TObject);
+begin
+if trim(esearch_cod.Text)<>'' then
+  Dmanbar.ADOeditgeymat.Locate('calacod',esearch_cod.Text,[loPartialKey]);
+end;
+
+procedure Tfrm_editgeymatjens.b_eslahe_geymate_kharidClick(
+  Sender: TObject);
+begin
+  l_review.Caption:=Dmanbar.ADOeditgeymatid.AsString;
+  frm_eslahe_geymate_kharide_jens.ShowModal;
+  
+  Dmanbar.ADOeditgeymat.Locate('id',l_review.Caption,[loPartialKey]);
+end;
+
+procedure Tfrm_editgeymatjens.b_eslahe_geymate_foroshClick(
+  Sender: TObject);
+begin
+if Dmanbar.ADOeditgeymat.RecordCount>0 then
+begin
+
+l_review.Caption:=Dmanbar.ADOeditgeymatid.AsString;
+
+ if (l_type.Caption='sherkat_taki')  then
+ begin
+
+  frm_vrode_geymate_jadid.L_type.Caption:=l_type.Caption;
+  frm_vrode_geymate_koli_jadid.ShowModal;
+ end;
+ if(l_type.Caption='jens_taki') then
+ begin
+  frm_vrode_geymate_jadid.L_type.Caption:=l_type.Caption;
+  frm_vrode_geymate_koli_jadid.ShowModal;
+ end;
+
+ if(l_type.Caption='sherkat_hame_darsadi')  then
+ begin
+  frm_emale_darsadie_geymat_roye_hame.L_type.Caption:='sherkat_hame_darsadi';
+  frm_emale_darsadie_geymat_roye_hame.ShowModal;
+ end;
+ if(l_type.Caption='hame_darsadi')  then
+ begin
+  frm_emale_darsadie_geymat_roye_hame.L_type.Caption:='hame_darsadi';
+  frm_emale_darsadie_geymat_roye_hame.ShowModal;
+ end;
+
+   Dmanbar.ADOeditgeymat.Locate('id',l_review.Caption,[loPartialKey]);
+end;
+end;
+
+end.

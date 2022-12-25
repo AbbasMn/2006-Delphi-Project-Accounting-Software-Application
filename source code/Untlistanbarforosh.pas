@@ -1,0 +1,129 @@
+unit Untlistanbarforosh;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, SUIMgr, Grids, DBGrids, SUIDBCtrls, DB,
+  dxCore, dxButtons, ExtCtrls, SUIForm, ActnList, StdCtrls;
+
+type
+  TFrm_listanbarforosh = class(TForm)
+    DataSource1: TDataSource;
+    suiDBGrid1: TsuiDBGrid;
+    dxToolButton11: TdxToolButton;
+    RadioGroup1: TRadioGroup;
+    dxToolButton1: TdxToolButton;
+    procedure FormShow(Sender: TObject);
+    procedure dxToolButton11Click(Sender: TObject);
+    procedure show;
+    procedure type_;
+    procedure name_jans;
+    procedure tedad_jans_kam_be_ziad;
+    procedure tedad_jans_ziad_be_kam;
+    procedure cod_jans;
+    procedure geymat_jans_kam_be_ziad;
+    procedure geymat_jans_ziad_be_kam;
+    procedure RadioGroup1Click(Sender: TObject);
+    procedure dxToolButton1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Frm_listanbarforosh: TFrm_listanbarforosh;
+
+implementation
+
+uses Untdmlistha, Unt_print_anbarkol, unt_main, unt_login, Untdmanbarexit,
+  Unt_print_jens_inanbar;
+
+{$R *.dfm}
+procedure TFrm_listanbarforosh.name_jans;
+begin
+  Dmlistha.ADOlistanbarforosh.SQL.Text:='select * from Tanbar_jens_kolli order by calaname,calacod';
+  Dmlistha.ADOlistanbarforosh.Open;
+
+  Frm_print_anbarkol.QRL_type.Caption:=' „— » ”«“Ì ·Ì”  «Ã‰«” »— «”«” ‰«„ «Ã‰«”';
+end;
+
+procedure TFrm_listanbarforosh.tedad_jans_kam_be_ziad;
+begin
+  Dmlistha.ADOlistanbarforosh.SQL.Text:='select * from Tanbar_jens_kolli order by tedadanbar,calaname,calacod';
+  Dmlistha.ADOlistanbarforosh.Open;
+  Frm_print_anbarkol.QRL_type.Caption:=' „— » ”«“Ì ·Ì”  «Ã‰«” »— «”«”  ⁄œ«œÃ‰”  „ÊÃÊœ œ— „ò«‰ (ò„ »Â “Ì«œ)’⁄ÊœÌ';
+end;
+procedure TFrm_listanbarforosh.tedad_jans_ziad_be_kam;
+begin
+  Dmlistha.ADOlistanbarforosh.SQL.Text:='select * from Tanbar_jens_kolli order by tedadanbar desc,calaname,calacod';
+  Dmlistha.ADOlistanbarforosh.Open;
+  Frm_print_anbarkol.QRL_type.Caption:=' „— » ”«“Ì ·Ì”  «Ã‰«” »— «”«”  ⁄œ«œÃ‰”  „ÊÃÊœ œ— „ò«‰ (“Ì«œ »Â ò„)‰“Ê·Ì';
+end;
+procedure TFrm_listanbarforosh.cod_jans;
+begin
+  Dmlistha.ADOlistanbarforosh.SQL.Text:='select * from Tanbar_jens_kolli order by calacod';
+  Dmlistha.ADOlistanbarforosh.Open;
+  Frm_print_anbarkol.QRL_type.Caption:=' „— » ”«“Ì ·Ì”  «Ã‰«” »— «”«” òœ «Ã‰«”';
+end;
+procedure TFrm_listanbarforosh.geymat_jans_kam_be_ziad;
+begin
+  Dmlistha.ADOlistanbarforosh.SQL.Text:='select * from Tanbar_jens_kolli order by geymatforosh,calaname,calacod';
+  Dmlistha.ADOlistanbarforosh.Open;
+  Frm_print_anbarkol.QRL_type.Caption:=' „— » ”«“Ì ·Ì”  «Ã‰«” »— «”«” ﬁÌ„  ›—Ê‘ «Ã‰«” (ò„ »Â “Ì«œ)’⁄ÊœÌ';
+end;
+procedure TFrm_listanbarforosh.geymat_jans_ziad_be_kam;
+begin
+  Dmlistha.ADOlistanbarforosh.SQL.Text:='select * from Tanbar_jens_kolli order by geymatforosh desc,calaname,calacod';
+  Dmlistha.ADOlistanbarforosh.Open;
+  Frm_print_anbarkol.QRL_type.Caption:=' „— » ”«“Ì ·Ì”  «Ã‰«” »— «”«” ﬁÌ„  ›—Ê‘ «Ã‰«” (“Ì«œ »Â ò„)‰“Ê·Ì';
+end;
+//////////////
+procedure TFrm_listanbarforosh.type_;
+begin
+ if RadioGroup1.ItemIndex=0 then
+  name_jans;
+ if RadioGroup1.ItemIndex=1 then
+  cod_jans;
+ if RadioGroup1.ItemIndex=2 then
+  tedad_jans_kam_be_ziad;
+ if RadioGroup1.ItemIndex=3 then
+    tedad_jans_ziad_be_kam;
+ if RadioGroup1.ItemIndex=4 then
+  geymat_jans_kam_be_ziad;
+ if RadioGroup1.ItemIndex=5 then
+  geymat_jans_ziad_be_kam;
+end;
+///////////////////////////////////////////////
+procedure TFrm_listanbarforosh.show;
+begin
+  Dmlistha.ADOlistanbarforosh.SQL.Text:='select * from Tanbar_jens_kolli order by anbarname,calaname,calacod';
+  Dmlistha.ADOlistanbarforosh.Open
+end;
+
+procedure TFrm_listanbarforosh.FormShow(Sender: TObject);
+begin
+  RadioGroup1.ItemIndex:=0;
+  type_;
+  Frm_listanbarforosh.WindowState:=wsMaximized;
+end;
+
+procedure TFrm_listanbarforosh.dxToolButton11Click(Sender: TObject);
+begin
+      Frm_print_anbarkol.QRLtarikh.Caption :=frm_login.Egettarikh.Text;
+      Frm_print_anbarkol.QuickRep1.Preview;
+end;
+
+procedure TFrm_listanbarforosh.RadioGroup1Click(Sender: TObject);
+begin
+  type_;
+end;
+
+procedure TFrm_listanbarforosh.dxToolButton1Click(Sender: TObject);
+begin
+      Frm_print_anbarkol.QRLtarikh.Caption :=frm_login.Egettarikh.Text;
+      Frm_print_anbarkol.QuickRep1.Print;
+end;
+
+end.

@@ -1,0 +1,140 @@
+object frm_entekhbe_sherkat: Tfrm_entekhbe_sherkat
+  Left = 294
+  Top = 179
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
+  Caption = #1575#1606#1578#1582#1575#1576' '#1588#1582#1589' '#1610#1575' '#1588#1585#1705#1578' '#1601#1585#1608#1588#1606#1583#1607' '#1575#1580#1606#1575#1587
+  ClientHeight = 506
+  ClientWidth = 419
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poDesktopCenter
+  OnClose = FormClose
+  OnShow = FormShow
+  DesignSize = (
+    419
+    506)
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label4: TLabel
+    Left = 311
+    Top = 23
+    Width = 100
+    Height = 13
+    BiDiMode = bdRightToLeft
+    Caption = #1606#1575#1605' '#1601#1585#1608#1588#1606#1583#1607'             :'
+    Font.Charset = ARABIC_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentBiDiMode = False
+    ParentFont = False
+  end
+  object L_type: TLabel
+    Left = 8
+    Top = 40
+    Width = 32
+    Height = 13
+    Caption = 'L_type'
+    Visible = False
+  end
+  object suiDBGrid1: TsuiDBGrid
+    Left = 2
+    Top = 58
+    Width = 414
+    Height = 446
+    TabStop = False
+    Anchors = [akLeft, akTop, akRight, akBottom]
+    BiDiMode = bdRightToLeft
+    BorderStyle = bsNone
+    Color = clBtnFace
+    Ctl3D = True
+    DataSource = DataSource1
+    FixedColor = clMenu
+    Font.Charset = ARABIC_CHARSET
+    Font.Color = clBlack
+    Font.Height = -15
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection]
+    ParentBiDiMode = False
+    ParentCtl3D = False
+    ParentFont = False
+    ReadOnly = True
+    TabOrder = 0
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clBlack
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+    UIStyle = FromThemeFile
+    BorderColor = clBlack
+    FocusedColor = clNavy
+    SelectedColor = clYellow
+    FontColor = clBlack
+    TitleFontColor = clBlack
+    FixedBGColor = clMenu
+    BGColor = clBtnFace
+    Columns = <
+      item
+        Alignment = taCenter
+        Expanded = False
+        FieldName = 'code'
+        Title.Alignment = taCenter
+        Title.Caption = #1705#1583
+        Width = 50
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'shahrforoshande'
+        Title.Alignment = taCenter
+        Title.Caption = #1605#1588#1582#1589#1575#1578' '#1601#1585#1608#1588#1606#1583#1607
+        Width = 300
+        Visible = True
+      end>
+  end
+  object E_name: TEdit
+    Left = 161
+    Top = 18
+    Width = 139
+    Height = 21
+    BiDiMode = bdRightToLeft
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
+    MaxLength = 10
+    ParentBiDiMode = False
+    ParentFont = False
+    TabOrder = 1
+    OnChange = E_nameChange
+  end
+  object Button1: TButton
+    Left = 41
+    Top = 17
+    Width = 91
+    Height = 25
+    Caption = #1576#1585#1711#1588#1578
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 2
+    OnClick = Button1Click
+  end
+  object DataSource1: TDataSource
+    DataSet = DataModule1.ADOQuery3
+    Left = 36
+    Top = 84
+  end
+end

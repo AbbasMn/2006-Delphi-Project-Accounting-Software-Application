@@ -1,0 +1,339 @@
+object frm_hazfe_jans_az_Anbar: Tfrm_hazfe_jans_az_Anbar
+  Left = 265
+  Top = 140
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
+  Caption = #1581#1584#1601' '#1705#1575#1605#1604' '#1580#1606#1587' '#1575#1586' '#1605#1705#1575#1606' '#1575#1606#1578#1582#1575#1576#1610
+  ClientHeight = 478
+  ClientWidth = 356
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poDesktopCenter
+  DesignSize = (
+    356
+    478)
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label8: TLabel
+    Left = 96
+    Top = 8
+    Width = 164
+    Height = 16
+    Anchors = [akTop, akRight]
+    BiDiMode = bdRightToLeft
+    Caption = #1580#1606#1587' '#1575#1606#1578#1582#1575#1576' '#1588#1583#1607' '#1576#1585#1575#1610' '#1581#1584#1601':'
+    Font.Charset = ARABIC_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentBiDiMode = False
+    ParentFont = False
+    Transparent = True
+  end
+  object DBText_name: TDBText
+    Left = 0
+    Top = 35
+    Width = 356
+    Height = 22
+    Alignment = taCenter
+    Anchors = [akLeft, akTop, akRight]
+    BiDiMode = bdRightToLeft
+    DataField = 'calaname'
+    DataSource = DataSource1
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clMaroon
+    Font.Height = -19
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentBiDiMode = False
+    ParentFont = False
+  end
+  object Label2: TLabel
+    Left = 152
+    Top = 63
+    Width = 53
+    Height = 16
+    Anchors = [akTop, akRight]
+    BiDiMode = bdRightToLeft
+    Caption = #1705#1583' '#1580#1606#1587':'
+    Font.Charset = ARABIC_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentBiDiMode = False
+    ParentFont = False
+    Transparent = True
+  end
+  object DBText1: TDBText
+    Left = 0
+    Top = 91
+    Width = 356
+    Height = 22
+    Alignment = taCenter
+    Anchors = [akLeft, akTop, akRight]
+    BiDiMode = bdRightToLeft
+    DataField = 'calacod'
+    DataSource = DataSource1
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clMaroon
+    Font.Height = -19
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentBiDiMode = False
+    ParentFont = False
+  end
+  object Label1: TLabel
+    Left = 125
+    Top = 119
+    Width = 106
+    Height = 16
+    Anchors = [akTop, akRight]
+    BiDiMode = bdRightToLeft
+    Caption = #1606#1575#1605' '#1601#1585#1608#1588#1606#1583#1607' '#1580#1606#1587':'
+    Font.Charset = ARABIC_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentBiDiMode = False
+    ParentFont = False
+    Transparent = True
+  end
+  object DBText_shakhs_sherkat: TDBText
+    Left = 0
+    Top = 147
+    Width = 356
+    Height = 22
+    Alignment = taCenter
+    Anchors = [akLeft, akTop, akRight]
+    BiDiMode = bdRightToLeft
+    DataField = 'shakhs_sherkat'
+    DataSource = DataSource1
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clMaroon
+    Font.Height = -19
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentBiDiMode = False
+    ParentFont = False
+  end
+  object Label3: TLabel
+    Left = 106
+    Top = 175
+    Width = 144
+    Height = 16
+    Anchors = [akTop, akRight]
+    BiDiMode = bdRightToLeft
+    Caption = #1602#1610#1605#1578' '#1582#1585#1610#1583' ('#1580#1586#1574#1610') '#1580#1606#1587':'
+    Font.Charset = ARABIC_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentBiDiMode = False
+    ParentFont = False
+    Transparent = True
+  end
+  object DBText_geymate_khaaid: TDBText
+    Left = 0
+    Top = 203
+    Width = 356
+    Height = 22
+    Alignment = taCenter
+    Anchors = [akLeft, akTop, akRight]
+    BiDiMode = bdRightToLeft
+    DataField = 'geymatkharid'
+    DataSource = DataSource1
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clMaroon
+    Font.Height = -19
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentBiDiMode = False
+    ParentFont = False
+  end
+  object Label4: TLabel
+    Left = 103
+    Top = 230
+    Width = 150
+    Height = 16
+    Anchors = [akTop, akRight]
+    BiDiMode = bdRightToLeft
+    Caption = #1602#1610#1605#1578' '#1601#1585#1608#1588' ('#1580#1586#1574#1610') '#1580#1606#1587':'
+    Font.Charset = ARABIC_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentBiDiMode = False
+    ParentFont = False
+    Transparent = True
+  end
+  object DBText_geymate_forosh: TDBText
+    Left = 0
+    Top = 258
+    Width = 356
+    Height = 22
+    Alignment = taCenter
+    Anchors = [akLeft, akTop, akRight]
+    BiDiMode = bdRightToLeft
+    DataField = 'geymatforosh'
+    DataSource = DataSource1
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clMaroon
+    Font.Height = -19
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentBiDiMode = False
+    ParentFont = False
+  end
+  object Label5: TLabel
+    Left = 117
+    Top = 286
+    Width = 122
+    Height = 16
+    Anchors = [akTop, akRight]
+    BiDiMode = bdRightToLeft
+    Caption = #1578#1593#1583#1575#1583' '#1608#1575#1581#1583' '#1705#1604#1610' '#1580#1606#1587':'
+    Font.Charset = ARABIC_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentBiDiMode = False
+    ParentFont = False
+    Transparent = True
+  end
+  object Label9: TLabel
+    Left = 110
+    Top = 342
+    Width = 137
+    Height = 16
+    Anchors = [akTop, akRight]
+    BiDiMode = bdRightToLeft
+    Caption = #1578#1593#1583#1575#1583' '#1608#1575#1581#1583' '#1580#1586#1574#1610' '#1583#1585' '#1705#1604#1610':'
+    Font.Charset = ARABIC_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentBiDiMode = False
+    ParentFont = False
+    Transparent = True
+  end
+  object DBText_tedade_jozi_dar_koli: TDBText
+    Left = 0
+    Top = 370
+    Width = 356
+    Height = 22
+    Alignment = taCenter
+    Anchors = [akLeft, akTop, akRight]
+    BiDiMode = bdRightToLeft
+    DataField = 'tedad_jozi_da_koli'
+    DataSource = DataSource1
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clMaroon
+    Font.Height = -19
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentBiDiMode = False
+    ParentFont = False
+  end
+  object Label7: TLabel
+    Left = 136
+    Top = 398
+    Width = 85
+    Height = 16
+    Anchors = [akTop, akRight]
+    BiDiMode = bdRightToLeft
+    Caption = #1578#1593#1583#1575#1583' '#1705#1604' '#1580#1606#1587':'
+    Font.Charset = ARABIC_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentBiDiMode = False
+    ParentFont = False
+    Transparent = True
+  end
+  object L_id: TLabel
+    Left = 272
+    Top = 8
+    Width = 20
+    Height = 13
+    Caption = 'L_id'
+  end
+  object DBText2: TDBText
+    Left = 0
+    Top = 314
+    Width = 356
+    Height = 22
+    Alignment = taCenter
+    Anchors = [akLeft, akTop, akRight]
+    BiDiMode = bdRightToLeft
+    DataField = 'tedad_koli'
+    DataSource = DataSource1
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clMaroon
+    Font.Height = -19
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentBiDiMode = False
+    ParentFont = False
+  end
+  object DBText4: TDBText
+    Left = 0
+    Top = 426
+    Width = 356
+    Height = 22
+    Alignment = taCenter
+    Anchors = [akLeft, akTop, akRight]
+    BiDiMode = bdRightToLeft
+    DataField = 'tedadanbar'
+    DataSource = DataSource1
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clMaroon
+    Font.Height = -19
+    Font.Name = 'Arial'
+    Font.Style = [fsBold]
+    ParentBiDiMode = False
+    ParentFont = False
+  end
+  object suibtaeed11: TsuiButton
+    Left = 122
+    Top = 452
+    Width = 113
+    Height = 22
+    Font.Charset = ARABIC_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    Caption = #1581#1584#1601' '#1606#1607#1575#1610#1610' '#1580#1606#1587
+    AutoSize = False
+    ParentFont = False
+    FileTheme = frm_main.suiFileTheme1
+    UIStyle = WinXP
+    TabOrder = 0
+    Transparent = False
+    ModalResult = 0
+    FocusedRectMargin = 2
+    Layout = blGlyphLeft
+    Spacing = 4
+    MouseContinuouslyDownInterval = 100
+    OnClick = suibtaeed11Click
+    ResHandle = 0
+  end
+  object DataSource1: TDataSource
+    DataSet = Dmlistha.ADOlistanbarforosh
+    Left = 24
+    Top = 80
+  end
+end

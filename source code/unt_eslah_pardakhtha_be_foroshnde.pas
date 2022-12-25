@@ -1,0 +1,559 @@
+unit unt_eslah_pardakhtha_be_foroshnde;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, DBCtrls, ExtCtrls, SUIButton, Mask, Grids, DBGrids,
+  SUIDBCtrls, DB;
+
+type
+  Tfrm_eslah_pardakhtha_be_foroshnde = class(TForm)
+    L_id: TLabel;
+    GroupBox1: TGroupBox;
+    suiDBGrid1: TsuiDBGrid;
+    E_name: TEdit;
+    suiDBGrid2: TsuiDBGrid;
+    GroupBox2: TGroupBox;
+    Label3: TLabel;
+    Label5: TLabel;
+    E_mablagh: TEdit;
+    e_t_roz: TMaskEdit;
+    e_t_mah: TMaskEdit;
+    e_t_sal: TMaskEdit;
+    L_mablagh: TLabel;
+    suiButton7: TsuiButton;
+    suiButton6: TsuiButton;
+    G_mah: TGroupBox;
+    Label2: TLabel;
+    Label1: TLabel;
+    dbsal: TDBLookupComboBox;
+    scmah: TComboBox;
+    GroupBox4: TGroupBox;
+    RadioGroup1: TRadioGroup;
+    DataSource2: TDataSource;
+    DataSource3: TDataSource;
+    DataSource1: TDataSource;
+    G_tarikh: TGroupBox;
+    RadioGroup2: TRadioGroup;
+    MaskEditrooz: TMaskEdit;
+    MaskEditmah: TMaskEdit;
+    MaskEditsal: TMaskEdit;
+    l_time: TLabel;
+    Label4: TLabel;
+    Label10: TLabel;
+    e_cod: TEdit;
+    l_review: TLabel;
+    procedure E_nameChange(Sender: TObject);
+    procedure RadioGroup1Click(Sender: TObject);
+    procedure RadioGroup2Click(Sender: TObject);
+    procedure MaskEdit1Change(Sender: TObject);
+    procedure dbsalClick(Sender: TObject);
+    procedure scmahChange(Sender: TObject);
+    procedure E_mablaghKeyPress(Sender: TObject; var Key: Char);
+    procedure e_t_rozKeyPress(Sender: TObject; var Key: Char);
+    procedure e_t_mahKeyPress(Sender: TObject; var Key: Char);
+    procedure e_t_salKeyPress(Sender: TObject; var Key: Char);
+    procedure show_mah;
+    procedure show_tarikh;
+    procedure update_pardakht;
+    procedure updatebedehi(bedeh:real;feli:real);
+    procedure update_nagd_tosandog;
+    function max_bedehi(var bedeh:real;feli:real):boolean;
+    procedure FormShow(Sender: TObject);
+    procedure suiButton7Click(Sender: TObject);
+    procedure suiButton6Click(Sender: TObject);
+    procedure e_codChange(Sender: TObject);
+    procedure e_codKeyPress(Sender: TObject; var Key: Char);
+    procedure e_t_mahExit(Sender: TObject);
+    procedure e_t_rozExit(Sender: TObject);
+    procedure show_slaha;
+    procedure e_t_salExit(Sender: TObject);
+
+    procedure execute_eslahe_pardakht_be_foroshande_stored_procedure(bedeh:real;feli:real);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    sandog:string;
+  end;
+
+var
+  frm_eslah_pardakhtha_be_foroshnde: Tfrm_eslah_pardakhtha_be_foroshnde;
+
+implementation
+
+uses unt_datamodule1, Taghvim, unt_login, unt_DataM_final,
+  unt_eslah_pardakhthaye_kharidar, Unt_search, Unt_mmoshakhasat_shakhs,
+  unt_main, unt_datam_sp_eslahe_forosh, unt_gozaresh_az_sandog;
+
+{$R *.dfm}
+procedure Tfrm_eslah_pardakhtha_be_foroshnde.execute_eslahe_pardakht_be_foroshande_stored_procedure(bedeh:real;feli:real);
+var b_j,t_j,type_,par:real;
+    st:pchar;
+    tarikh:string;
+    bestankar,bedehkar,mab_jadid,mab_gadim:real;
+begin
+
+    tarikh:=e_t_sal.Text+'/'+e_t_mah.Text+'/'+e_t_roz.Text;
+
+  DataM_final.ADOQ_bestankar_bedehkae_foroshande.SQL.Text:='select * from T_bestankar_bedehkar_foroshande '+
+  ' where shahrforoshande='+QuotedStr(DataModule1.ADOQuery3shahrforoshande.AsString)+
+  ' and code_shakhs='+DataModule1.ADOQuery3code.AsString+
+  ' and tarikh='+QuotedStr(DataModule1.ADOpardakhtbedehitarikh.AsString)+
+  ' and time_='+QuotedStr(DataModule1.ADOpardakhtbedehitime_.AsString);
+  DataM_final.ADOQ_bestankar_bedehkae_foroshande.Open;
+
+  bestankar:=DataM_final.ADOQ_bestankar_bedehkae_kharidarbestankar.AsFloat;
+  bedehkar:=DataM_final.ADOQ_bestankar_bedehkae_kharidarbedehkar.AsFloat;
+
+  mab_jadid:=StrToFloat(E_mablagh.Text);
+  mab_gadim:=StrToFloat(L_mablagh.Caption);
+  ///////////////////////////////////////////////////////////////////////
+
+  if bestankar=0 then
+  begin
+    if mab_jadid>=mab_gadim then
+      par:=1
+    else
+      par:=2
+  end
+
+  else
+
+  begin
+    if mab_jadid>=mab_gadim then
+      par:=3
+    else
+      begin
+        if (mab_jadid-mab_gadim)<bedehkar then
+          par:=4
+        else
+          par:=5;
+      end;
+  end;
+
+  ///////////////////////////////////////////////////////////////////////  
+
+  if StrToFloat(E_mablagh.Text)<= feli then
+  begin
+    b_j:=feli-StrToFloat(E_mablagh.Text);
+    type_:=1;
+  end
+  else
+  begin
+    b_j:=StrToFloat(E_mablagh.Text)-feli;
+    type_:=2;
+  end;
+
+//////////////////////////////////////////////////////////////////////////////////
+
+       frm_main.l_last_op.Caption:=' «’·«Õ Å—œ«Œ  »œÂÌ  Ê”ÿ ‘„« »Â '+DataModule1.ADOQuery3shahrforoshande.AsString+' À»  ‘œÂ œ—  «—ÌŒ '+DataModule1.ADOpardakhtbedehitarikh.AsString;
+
+
+       datam_sp_eslahe_forosh.ADOStoredProc_eslahe_pardakhte_bedehi_be_foroshande.Parameters[0].Value:=DataModule1.ADOQuery3shahrforoshande.AsString;//@shahrforoshande nvarchar(50),
+       datam_sp_eslahe_forosh.ADOStoredProc_eslahe_pardakhte_bedehi_be_foroshande.Parameters[1].Value:=frm_main.LMDClock1.Digital.Caption;//@time nvarchar(10),
+       datam_sp_eslahe_forosh.ADOStoredProc_eslahe_pardakhte_bedehi_be_foroshande.Parameters[2].Value:=frm_main.L_tarikh.Caption;//@tarikh nvarchar(12),
+
+       datam_sp_eslahe_forosh.ADOStoredProc_eslahe_pardakhte_bedehi_be_foroshande.Parameters[3].Value:=tarikh;//@tarikh_jadid nvarchar(12),
+
+       datam_sp_eslahe_forosh.ADOStoredProc_eslahe_pardakhte_bedehi_be_foroshande.Parameters[4].Value:=StrToFloat(E_mablagh.Text);//@mablagh_jadid float,
+
+       datam_sp_eslahe_forosh.ADOStoredProc_eslahe_pardakhte_bedehi_be_foroshande.Parameters[5].Value:=StrToFloat(L_id.Caption);//@id float,
+
+       datam_sp_eslahe_forosh.ADOStoredProc_eslahe_pardakhte_bedehi_be_foroshande.Parameters[6].Value:=type_;//@type nvarchar(6),
+
+       datam_sp_eslahe_forosh.ADOStoredProc_eslahe_pardakhte_bedehi_be_foroshande.Parameters[7].Value:=b_j;//@b_j float,
+
+       datam_sp_eslahe_forosh.ADOStoredProc_eslahe_pardakhte_bedehi_be_foroshande.Parameters[8].Value:=' «’·«Õ Å—œ«Œ  »œÂÌ '+' «“ „»·€ '+L_mablagh.Caption+' »Â „»·€ '+
+       E_mablagh.Text+'»Â '+DataModule1.ADOQuery3shahrforoshande.AsString+' «“  «—ÌŒ '+
+       DataModule1.ADOpardakhtbedehitarikh.AsString+'»Â  «—ÌŒ '+e_t_sal.Text+'/'+e_t_mah.Text+'/'+e_t_roz.Text;//@amaliat nvarchar(1000)
+
+       datam_sp_eslahe_forosh.ADOStoredProc_eslahe_pardakhte_bedehi_be_foroshande.Parameters[9].Value:=DataModule1.ADOpardakhtbedehimablagh.AsFloat;//@mablagh_gadim float,
+       datam_sp_eslahe_forosh.ADOStoredProc_eslahe_pardakhte_bedehi_be_foroshande.Parameters[10].Value:=DataModule1.ADOQuery3code.AsFloat;//@code_kharidar float,
+       datam_sp_eslahe_forosh.ADOStoredProc_eslahe_pardakhte_bedehi_be_foroshande.Parameters[11].Value:=DataModule1.ADOpardakhtbedehitarikh.AsString;//@tarikh_gadim nvarchar(12),
+       datam_sp_eslahe_forosh.ADOStoredProc_eslahe_pardakhte_bedehi_be_foroshande.Parameters[12].Value:=DataModule1.ADOpardakhtbedehitime_.AsString;//@time_gadim nvarchar(10)
+
+       datam_sp_eslahe_forosh.ADOStoredProc_eslahe_pardakhte_bedehi_be_foroshande.Parameters[13].Value:=par ;//@par float
+       datam_sp_eslahe_forosh.ADOStoredProc_eslahe_pardakhte_bedehi_be_foroshande.Parameters[14].Value:=bedehkar ;//@bedehi float
+       datam_sp_eslahe_forosh.ADOStoredProc_eslahe_pardakhte_bedehi_be_foroshande.Parameters[15].Value:='Å—œ«Œ  ‰ﬁœÌ »œÂÌ »Â ›—Ê‘‰œÂ '+DataModule1.ADOQuery3shahrforoshande.AsString+' „»·€ ﬁ»· = '+DataModule1.ADOpardakhtbedehimablagh.AsString;//@tozih_sandog nvarchar(150),
+
+       datam_sp_eslahe_forosh.ADOStoredProc_eslahe_pardakhte_bedehi_be_foroshande.ExecProc;
+end;
+
+////////////////////////////////
+
+procedure Tfrm_eslah_pardakhtha_be_foroshnde.show_slaha;
+begin
+    DataModule1.ADOpardakhtbedehi.SQL.Text:='select * from T_pardakht_bedehi where shahrforoshande='+
+    QuotedStr(DataModule1.ADOQuery3shahrforoshande.AsString)+' order by tarikh,id';
+    DataModule1.ADOpardakhtbedehi.open;
+    if DataModule1.ADOpardakhtbedehi.RecordCount >0 then
+    begin
+     frm_eslah_pardakhtha_be_foroshnde.L_id.Caption:=DataModule1.ADOpardakhtbedehiid.AsString;
+     frm_eslah_pardakhtha_be_foroshnde.L_mablagh.Caption:=DataModule1.ADOpardakhtbedehimablagh.AsString;
+     frm_eslah_pardakhtha_be_foroshnde.E_mablagh.Text:=DataModule1.ADOpardakhtbedehimablagh.AsString;
+     frm_eslah_pardakhtha_be_foroshnde.l_time.Caption:=DataModule1.ADOpardakhtbedehitime_.AsString;
+
+     frm_eslah_pardakhtha_be_foroshnde.e_t_roz.Text:=DataModule1.ADOpardakhtbedehitarikh.AsString[9]+DataModule1.ADOpardakhtbedehitarikh.AsString[10];
+     frm_eslah_pardakhtha_be_foroshnde.e_t_mah.Text:=DataModule1.ADOpardakhtbedehitarikh.AsString[6]+DataModule1.ADOpardakhtbedehitarikh.AsString[7];
+     frm_eslah_pardakhtha_be_foroshnde.e_t_sal.Text:=DataModule1.ADOpardakhtbedehitarikh.AsString[1]+DataModule1.ADOpardakhtbedehitarikh.AsString[2]+DataModule1.ADOpardakhtbedehitarikh.AsString[3]+DataModule1.ADOpardakhtbedehitarikh.AsString[4];
+    end
+    else
+    begin
+      frm_eslah_pardakhtha_be_foroshnde.L_id.Caption:='-1';
+     frm_eslah_pardakhtha_be_foroshnde.E_mablagh.Text:='';
+
+     frm_eslah_pardakhtha_be_foroshnde.e_t_roz.Text:='';
+     frm_eslah_pardakhtha_be_foroshnde.e_t_mah.Text:='';
+     frm_eslah_pardakhtha_be_foroshnde.e_t_sal.Text:='';
+     frm_eslah_pardakhtha_be_foroshnde.l_time.Caption:='';     
+    end;    
+end;
+////////////////////
+procedure Tfrm_eslah_pardakhtha_be_foroshnde.updatebedehi(bedeh:real;feli:real);
+var b_j,t_j:real;
+    st:pchar;
+    tarikh:string;
+begin
+    tarikh:=e_t_sal.Text+'/'+e_t_mah.Text+'/'+e_t_roz.Text;
+  if StrToFloat(E_mablagh.Text)<= feli then
+  begin
+    b_j:=feli-StrToFloat(E_mablagh.Text);
+
+    DataM_final.ADOQ_bedeh_be_foroshnse2.SQL.Text:='update T_bede_kol_be_foroshande  set bedeh=bedeh+'+FloatToStr(b_j)+
+    ',tarikh_akharin_pardakht='+QuotedStr(tarikh)+' where shahrforoshande='+QuotedStr(DataModule1.ADOQuery3shahrforoshande.AsString);
+    DataM_final.ADOQ_bedeh_be_foroshnse2.ExecSQL;
+  end
+  else
+  begin
+    b_j:=StrToFloat(E_mablagh.Text)-feli;
+
+    DataM_final.ADOQ_bedeh_be_foroshnse2.SQL.Text:='update T_bede_kol_be_foroshande set bedeh=bedeh-'+FloatToStr(b_j)+
+    ',tarikh_akharin_pardakht='+QuotedStr(tarikh)+' where shahrforoshande='+QuotedStr(DataModule1.ADOQuery3shahrforoshande.AsString);
+    DataM_final.ADOQ_bedeh_be_foroshnse2.ExecSQL;
+  end;
+end;
+
+function Tfrm_eslah_pardakhtha_be_foroshnde.max_bedehi(var bedeh:real;feli:real):boolean;
+var mb:pchar;
+begin
+  DataM_final.ADOQ_bedeh_be_foroshnse2.SQL.Text:='select code_shakhs,shahrforoshande,' +
+  ' sum(bedehkar) as bedeh,sum(bestankar) as talab from '+
+  ' T_bestankar_bedehkar_foroshande'+
+  ' where shahrforoshande='+QuotedStr(DataModule1.ADOQuery3shahrforoshande.AsString)+
+  ' and code_shakhs='+DataModule1.ADOQuery3code.AsString+
+  ' group by code_shakhs,shahrforoshande';
+
+  DataM_final.ADOQ_bedeh_be_foroshnse2.Open;
+
+  bedeh:=DataM_final.ADOQ_bedeh_be_foroshnse2bedeh.Value;
+
+  bedeh:=DataM_final.ADOQ_bedeh_be_foroshnse2bedeh.Value;
+  if (StrToFloat(E_mablagh.Text) > (bedeh+feli)) then
+  begin
+    max_bedehi:=false;
+    mb:=pchar('„»·€ Ê«—œ ‘œÂ »«Ìœ ò„ — «“ ÿ·» ò· ‘Œ’ << ' +FloatToStr(bedeh+feli)+' >> »«‘œ ');
+    MessageBox(Handle,mb,'Œÿ« !',MB_OK + MB_ICONEXCLAMATION or MB_RTLREADING or MB_RIGHT);
+  end
+  else
+    max_bedehi:=true;
+end;
+
+procedure Tfrm_eslah_pardakhtha_be_foroshnde.update_nagd_tosandog;
+var x:string;
+begin
+   {x:=Edit6.Text;
+   DataModule_gozaresh_tarkibi.ADOQuery_daryaft_be_sandog.SQL.Text:='insert into T_vorod_khoroj_sandogha(tozih,type,tarikh,rooz,mah,sal,mablag,sandog)'+
+                                                                                        'values('+QuotedStr('œ—Ì«›  ‰ﬁœÌ œ— Å—œ«Œ  »œÂÌ  Ê”ÿ '+DataM_final.ADOQ_bedeh_be_kharidarshahrforoshande.AsString)+','+QuotedStr('Ê—ÊœÌ')+','+QuotedStr(x)+','+QuotedStr(x[9]+x[10])+','+QuotedStr(x[6]+x[7])+','+QuotedStr(x[1]+x[2]+x[3]+x[4])+','+Edit9.Text+
+                                                                                        ','+QuotedStr(DBLookupComboBox3.Text)+')';
+   DataModule_gozaresh_tarkibi.ADOQuery_daryaft_be_sandog.ExecSQL;}
+end;
+
+
+procedure Tfrm_eslah_pardakhtha_be_foroshnde.update_pardakht;
+var tarikh:string;
+begin
+    tarikh:=e_t_sal.Text+'/'+e_t_mah.Text+'/'+e_t_roz.Text;
+  DataModule1.ADOpardakhtbedehi.SQL.Text:='update T_pardakht_bedehi set mablagh='+E_mablagh.Text+
+  ',tarikh='+QuotedStr(tarikh)+' where id='+L_id.Caption;
+  DataModule1.ADOpardakhtbedehi.ExecSQL;
+end;
+
+procedure Tfrm_eslah_pardakhtha_be_foroshnde.show_tarikh;
+var tarikh:string;
+begin
+    tarikh:=MaskEditsal.Text+'/'+MaskEditmah.Text+'/'+MaskEditrooz.Text;
+    DataModule1.ADOpardakhtbedehi.SQL.Text:='select * from T_pardakht_bedehi where shahrforoshande='+
+    QuotedStr(DataModule1.ADOQuery3shahrforoshande.AsString)+' and tarikh='+QuotedStr(tarikh)+' order by tarikh,id';
+    DataModule1.ADOpardakhtbedehi.open;
+    if DataModule1.ADOpardakhtbedehi.RecordCount >0 then
+    begin
+     frm_eslah_pardakhtha_be_foroshnde.L_id.Caption:=DataModule1.ADOpardakhtbedehiid.AsString;
+     frm_eslah_pardakhtha_be_foroshnde.L_mablagh.Caption:=DataModule1.ADOpardakhtbedehimablagh.AsString;
+     frm_eslah_pardakhtha_be_foroshnde.E_mablagh.Text:=DataModule1.ADOpardakhtbedehimablagh.AsString;
+     frm_eslah_pardakhtha_be_foroshnde.l_time.Caption:=DataModule1.ADOpardakhtbedehitime_.AsString;
+
+     frm_eslah_pardakhtha_be_foroshnde.e_t_roz.Text:=DataModule1.ADOpardakhtbedehitarikh.AsString[9]+DataModule1.ADOpardakhtbedehitarikh.AsString[10];
+     frm_eslah_pardakhtha_be_foroshnde.e_t_mah.Text:=DataModule1.ADOpardakhtbedehitarikh.AsString[6]+DataModule1.ADOpardakhtbedehitarikh.AsString[7];
+     frm_eslah_pardakhtha_be_foroshnde.e_t_sal.Text:=DataModule1.ADOpardakhtbedehitarikh.AsString[1]+DataModule1.ADOpardakhtbedehitarikh.AsString[2]+DataModule1.ADOpardakhtbedehitarikh.AsString[3]+DataModule1.ADOpardakhtbedehitarikh.AsString[4];
+    end
+    else
+    begin
+      frm_eslah_pardakhtha_be_foroshnde.L_id.Caption:='-1';
+     frm_eslah_pardakhtha_be_foroshnde.E_mablagh.Text:='';
+
+     frm_eslah_pardakhtha_be_foroshnde.e_t_roz.Text:='';
+     frm_eslah_pardakhtha_be_foroshnde.e_t_mah.Text:='';
+     frm_eslah_pardakhtha_be_foroshnde.e_t_sal.Text:='';
+     frm_eslah_pardakhtha_be_foroshnde.l_time.Caption:='';     
+    end;    
+end;
+
+procedure Tfrm_eslah_pardakhtha_be_foroshnde.show_mah;
+begin
+    DataModule1.ADOpardakhtbedehi.SQL.Text:='select * from T_pardakht_bedehi where shahrforoshande='+
+    QuotedStr(DataModule1.ADOQuery3shahrforoshande.AsString)+' and tarikh like'+QuotedStr(dbsal.Text+'/'+Frm_search.getmonth(scmah.Text)+'%')+' order by tarikh,id';
+    DataModule1.ADOpardakhtbedehi.open;
+    if DataModule1.ADOpardakhtbedehi.RecordCount >0 then
+    begin
+     frm_eslah_pardakhtha_be_foroshnde.L_id.Caption:=DataModule1.ADOpardakhtbedehiid.AsString;
+     frm_eslah_pardakhtha_be_foroshnde.L_mablagh.Caption:=DataModule1.ADOpardakhtbedehimablagh.AsString;
+     frm_eslah_pardakhtha_be_foroshnde.E_mablagh.Text:=DataModule1.ADOpardakhtbedehimablagh.AsString;
+     frm_eslah_pardakhtha_be_foroshnde.l_time.Caption:=DataModule1.ADOpardakhtbedehitime_.AsString;
+
+     frm_eslah_pardakhtha_be_foroshnde.e_t_roz.Text:=DataModule1.ADOpardakhtbedehitarikh.AsString[9]+DataModule1.ADOpardakhtbedehitarikh.AsString[10];
+     frm_eslah_pardakhtha_be_foroshnde.e_t_mah.Text:=DataModule1.ADOpardakhtbedehitarikh.AsString[6]+DataModule1.ADOpardakhtbedehitarikh.AsString[7];
+     frm_eslah_pardakhtha_be_foroshnde.e_t_sal.Text:=DataModule1.ADOpardakhtbedehitarikh.AsString[1]+DataModule1.ADOpardakhtbedehitarikh.AsString[2]+DataModule1.ADOpardakhtbedehitarikh.AsString[3]+DataModule1.ADOpardakhtbedehitarikh.AsString[4];
+    end
+    else
+    begin
+      frm_eslah_pardakhtha_be_foroshnde.L_id.Caption:='-1';
+     frm_eslah_pardakhtha_be_foroshnde.E_mablagh.Text:='';
+
+     frm_eslah_pardakhtha_be_foroshnde.e_t_roz.Text:='';
+     frm_eslah_pardakhtha_be_foroshnde.e_t_mah.Text:='';
+     frm_eslah_pardakhtha_be_foroshnde.e_t_sal.Text:='';
+     frm_eslah_pardakhtha_be_foroshnde.l_time.Caption:='';     
+    end;
+end;
+
+procedure Tfrm_eslah_pardakhtha_be_foroshnde.E_nameChange(Sender: TObject);
+begin
+  DataModule1.ADOQuery3.Locate('shahrforoshande',E_name.Text,[loPartialKey]);
+end;
+
+procedure Tfrm_eslah_pardakhtha_be_foroshnde.RadioGroup1Click(
+  Sender: TObject);
+begin
+   if RadioGroup1.ItemIndex=0 then
+    begin
+      G_tarikh.Visible:=false;
+      G_mah.Visible:=true;
+      show_mah;
+    end;
+  if RadioGroup1.ItemIndex=1 then
+    begin
+      G_tarikh.Visible:=true;
+      G_mah.Visible:=false;
+      show_tarikh;
+    end;
+
+  if RadioGroup1.ItemIndex=2 then
+    begin
+      G_tarikh.Visible:=false;
+      G_mah.Visible:=false;
+      show_slaha;
+    end;
+end;
+
+procedure Tfrm_eslah_pardakhtha_be_foroshnde.RadioGroup2Click(
+  Sender: TObject);
+begin
+    if RadioGroup2.ItemIndex =0  then
+    begin
+      MaskEditrooz.Enabled :=false;
+      MaskEditmah.Enabled :=false;
+      MaskEditsal.Enabled :=false;
+      MaskEditrooz.Text :=frm_login.Egettarikh.Text[9]+frm_login.Egettarikh.Text[10];
+      MaskEditmah.Text :=frm_login.Egettarikh.Text[6]+frm_login.Egettarikh.Text[7];
+      MaskEditsal.Text :=frm_login.Egettarikh.Text[1]+frm_login.Egettarikh.Text[2]+frm_login.Egettarikh.Text[3]+frm_login.Egettarikh.Text[4];
+    end
+  else
+    begin
+      _Taghvim.ShowModal;
+      if _taghvim._str_date<>'' then
+      begin
+        MaskEditsal.Text:=_Taghvim._str_date[1]+_Taghvim._str_date[2]+ _Taghvim._str_date[3]+_Taghvim._str_date[4];
+        MaskEditMah.Text:=_Taghvim._str_date[6]+_Taghvim._str_date[7];
+        MaskEditRooz.Text:=_Taghvim._str_date[9]+_Taghvim._str_date[10];
+      end;
+    end;
+    show_tarikh;
+end;
+
+procedure Tfrm_eslah_pardakhtha_be_foroshnde.MaskEdit1Change(
+  Sender: TObject);
+begin
+  show_tarikh;
+end;
+
+procedure Tfrm_eslah_pardakhtha_be_foroshnde.dbsalClick(Sender: TObject);
+begin
+  show_mah;
+end;
+
+procedure Tfrm_eslah_pardakhtha_be_foroshnde.scmahChange(Sender: TObject);
+begin
+  show_mah;
+end;
+
+procedure Tfrm_eslah_pardakhtha_be_foroshnde.E_mablaghKeyPress(
+  Sender: TObject; var Key: Char);
+begin
+ if not (key in['0'..'9',#8]) then
+   key:=#0;
+end;
+
+
+procedure Tfrm_eslah_pardakhtha_be_foroshnde.e_t_rozKeyPress(
+  Sender: TObject; var Key: Char);
+begin
+ if not (key in['0'..'9',#8]) then
+   key:=#0;
+end;
+
+procedure Tfrm_eslah_pardakhtha_be_foroshnde.e_t_mahKeyPress(
+  Sender: TObject; var Key: Char);
+begin
+ if not (key in['0'..'9',#8]) then
+   key:=#0;
+end;
+
+procedure Tfrm_eslah_pardakhtha_be_foroshnde.e_t_salKeyPress(
+  Sender: TObject; var Key: Char);
+begin
+ if not (key in['0'..'9',#8]) then
+   key:=#0;
+end;
+
+procedure Tfrm_eslah_pardakhtha_be_foroshnde.FormShow(Sender: TObject);
+begin
+  DataModule1.ADOQsaljadid.SQL.Text:='select * from t_salha order by sal';
+  DataModule1.ADOQsaljadid.Open;
+  Frm_mmoshakhasat_shakhs.show_foroshandegan;
+  RadioGroup1.ItemIndex:=1;
+  RadioGroup2.ItemIndex:=0;
+  MaskEditrooz.Text :=frm_login.Egettarikh.Text[9]+frm_login.Egettarikh.Text[10];
+  MaskEditmah.Text :=frm_login.Egettarikh.Text[6]+frm_login.Egettarikh.Text[7];
+  MaskEditsal.Text :=frm_login.Egettarikh.Text[1]+frm_login.Egettarikh.Text[2]+frm_login.Egettarikh.Text[3]+frm_login.Egettarikh.Text[4];
+  show_tarikh;
+
+  E_name.Clear;
+
+
+  E_name.SetFocus;  
+end;
+
+procedure Tfrm_eslah_pardakhtha_be_foroshnde.suiButton7Click(
+  Sender: TObject);
+begin
+close;
+end;
+
+procedure Tfrm_eslah_pardakhtha_be_foroshnde.suiButton6Click(
+  Sender: TObject);
+var   bedeh,talab,mojodi,mablag:real;
+begin
+bedeh:=0;
+talab:=0;
+if DataModule1.ADOpardakhtbedehi.RecordCount <=0 then
+  MessageBox(Handle,'Å—œ«Œ Ì »—«Ì ÊÌ—«Ì‘ ÊÃÊœ ‰œ«—œ.','Œÿ« !',MB_OK + MB_ICONEXCLAMATION or MB_RTLREADING or MB_RIGHT)
+else
+begin
+  if (E_mablagh.Text='')or(e_t_roz.Text='')or(e_t_mah.Text='')or(e_t_sal.Text='')or(DataModule1.ADOQuery3shahrforoshande.AsString='')or(StrLen(pchar(e_t_sal.Text))<4) then
+    MessageBox(Handle,'„‘Œ’«  Œ—Ìœ«— Ê „»·€ Å—œ«Œ Ì ° Ê  «—ÌŒ »«Ìœ Ê«—œ ‘Êœ.','Œÿ« !',MB_OK + MB_ICONEXCLAMATION or MB_RTLREADING or MB_RIGHT)
+  else
+  begin
+
+      if max_bedehi(bedeh,strtofloat(L_mablagh.Caption)) then
+      begin
+
+        mojodi:=Frm_gozaresh_az_sandog.mojodi_kol(sandog);
+
+        if trim(E_mablagh.Text)='' then
+          mablag:=0
+        else
+          mablag:=StrToFloat(E_mablagh.Text);
+
+      if mablag>DataModule1.ADOpardakhtbedehimablagh.AsFloat then
+        if mojodi<(mablag-DataModule1.ADOpardakhtbedehimablagh.AsFloat) then
+        begin
+          MessageBox(Handle,pchar('„»·€Ì òÂ »Â Å—œ«Œ  »œÂÌ ›⁄·Ì «÷«›Â „Ì ‘Êœ «“ „ÊÃÊœÌ ’‰œÊﬁÌ òÂ Å—œ«Œ  «“ ¬‰ «‰Ã«„ ‘œÂ << '+sandog+' >> = << '+FloatToStr(mojodi)+' >> »Ì‘ — „Ì »«‘œ'),'Œÿ«! ',MB_OK or MB_ICONEXCLAMATION or MB_RTLREADING or MB_RIGHT );
+          Exit;
+        end;
+
+       l_review.Caption:=DataModule1.ADOpardakhtbedehiid.AsString;
+
+       execute_eslahe_pardakht_be_foroshande_stored_procedure(bedeh,StrToFloat(L_mablagh.Caption));
+
+        if RadioGroup1.ItemIndex=0 then
+        begin
+          show_mah;
+        end;
+        if RadioGroup1.ItemIndex=1 then
+        begin
+          show_tarikh;
+        end;
+
+        if RadioGroup1.ItemIndex=2 then
+        begin
+          show_slaha;
+        end;
+
+        DataModule1.ADOpardakhtbedehi.Locate('id',l_review.Caption,[loPartialKey]);
+        MessageBox(Handle,'Å—œ«Œ  «‰ Œ«»Ì «’·«Õ ‘œ.',' ÊÃÂ!',MB_OK + MB_ICONINFORMATION or MB_RTLREADING or MB_RIGHT);
+      end;
+    {end;}
+  end;
+end;
+
+end;
+
+procedure Tfrm_eslah_pardakhtha_be_foroshnde.e_codChange(Sender: TObject);
+begin
+ if e_cod.Text<>'' then
+  DataModule1.ADOQuery3.Locate('code',e_cod.Text,[loPartialKey]);
+end;
+
+procedure Tfrm_eslah_pardakhtha_be_foroshnde.e_codKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+ if not (key in['0'..'9',#8]) then
+   key:=#0;
+end;
+
+procedure Tfrm_eslah_pardakhtha_be_foroshnde.e_t_mahExit(Sender: TObject);
+begin
+  if StrLen(pchar(e_t_mah.Text))=1 then
+    e_t_mah.Text:='0'+e_t_mah.Text;
+end;
+
+procedure Tfrm_eslah_pardakhtha_be_foroshnde.e_t_rozExit(Sender: TObject);
+begin
+  if StrLen(pchar(e_t_roz.Text))=1 then
+    e_t_roz.Text:='0'+e_t_roz.Text;
+end;
+
+procedure Tfrm_eslah_pardakhtha_be_foroshnde.e_t_salExit(Sender: TObject);
+begin
+  IF e_t_sal.Text='' then
+    e_t_sal.Text:='0';
+  IF StrToInt(e_t_sal.Text)<1000 then
+  begin
+    MessageBox(Handle,'”«· »«Ìœ çÂ«— —ﬁ„Ì »«‘œ','Œÿ« !',MB_OK + MB_ICONEXCLAMATION or MB_RTLREADING or MB_RIGHT);
+    e_t_sal.SetFocus;
+  end;
+end;
+
+end.

@@ -1,0 +1,108 @@
+unit Unt_print_jens_kharidar;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, QRCtrls, QuickRpt, ExtCtrls;
+
+type
+  TFrm_print_jens_kharidar = class(TForm)
+    QuickRep1: TQuickRep;
+    TitleBand1: TQRBand;
+    QRLabel15: TQRLabel;
+    QRDBText2: TQRDBText;
+    QRShape18: TQRShape;
+    QRShape14: TQRShape;
+    QRShape13: TQRShape;
+    QRSysData1: TQRSysData;
+    QRLabel10: TQRLabel;
+    QRLtarikh: TQRLabel;
+    QRLtype: TQRLabel;
+    QRL_name_register: TQRLabel;
+    QRL_adress1: TQRLabel;
+    QRShape1: TQRShape;
+    QRShape9: TQRShape;
+    QRShape17: TQRShape;
+    QRShape24: TQRShape;
+    QRBand2: TQRBand;
+    QRLabel11: TQRLabel;
+    QRDBText8: TQRDBText;
+    QRLabel12: TQRLabel;
+    QRDBText9: TQRDBText;
+    QRDBText10: TQRDBText;
+    QRShape27: TQRShape;
+    QRShape28: TQRShape;
+    QRShape29: TQRShape;
+    QRDBText11: TQRDBText;
+    QRLabel14: TQRLabel;
+    QRDBText13: TQRDBText;
+    QRLabel13: TQRLabel;
+    QRDBText15: TQRDBText;
+    QRLabel17: TQRLabel;
+    QRLabel16: TQRLabel;
+    QRLabel18: TQRLabel;
+    QRLabel19: TQRLabel;
+    QRL_telefhon: TQRLabel;
+    QRLabel21: TQRLabel;
+    QRDBText16: TQRDBText;
+    QRBand1: TQRBand;
+    QRDBText1: TQRDBText;
+    QRDBText14: TQRDBText;
+    QRDBText3: TQRDBText;
+    QRDBText22: TQRDBText;
+    QRExpr2: TQRExpr;
+    QRShape12: TQRShape;
+    QRShape10: TQRShape;
+    QRShape20: TQRShape;
+    QRShape6: TQRShape;
+    QRShape11: TQRShape;
+    QRShape8: TQRShape;
+    QRShape15: TQRShape;
+    QRDBText4: TQRDBText;
+    QRShape26: TQRShape;
+    QRDBText5: TQRDBText;
+    QRDBText6: TQRDBText;
+    QRDBText12: TQRDBText;
+    QRShape16: TQRShape;
+    QRLabel23: TQRLabel;
+    QRDBText7: TQRDBText;
+    QRDBText18: TQRDBText;
+    QRShape7: TQRShape;
+    QRLabel1: TQRLabel;
+    QRLabel2: TQRLabel;
+    QRShape2: TQRShape;
+    QRLabel3: TQRLabel;
+    QRShape3: TQRShape;
+    QRLabel4: TQRLabel;
+    QRShape4: TQRShape;
+    QRLabel5: TQRLabel;
+    QRShape5: TQRShape;
+    QRLabel6: TQRLabel;
+    QRLabel8: TQRLabel;
+    QRShape22: TQRShape;
+    QRShape19: TQRShape;
+    QRShape21: TQRShape;
+    QRDBText19: TQRDBText;
+    QRLabel7: TQRLabel;
+    QRLabel9: TQRLabel;
+    QRLabel20: TQRLabel;
+    QRDBText17: TQRDBText;
+    QRDBText20: TQRDBText;
+    QRLabel26: TQRLabel;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Frm_print_jens_kharidar: TFrm_print_jens_kharidar;
+
+implementation
+
+uses Untdmlistha;
+
+{$R *.dfm}
+
+end.

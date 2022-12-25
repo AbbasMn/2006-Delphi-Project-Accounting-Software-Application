@@ -1,0 +1,238 @@
+object frm_anbar_jadid: Tfrm_anbar_jadid
+  Left = 386
+  Top = 225
+  BorderStyle = bsDialog
+  Caption = #1605#1705#1575#1606' '#1580#1583#1610#1583' '#1576#1585#1575#1610' '#1606#1711#1607#1583#1575#1585#1610' '#1580#1606#1587
+  ClientHeight = 325
+  ClientWidth = 343
+  Color = clBtnFace
+  Constraints.MinHeight = 50
+  Constraints.MinWidth = 130
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poDesktopCenter
+  Scaled = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object GroupBox1: TGroupBox
+    Left = -3
+    Top = 4
+    Width = 346
+    Height = 321
+    BiDiMode = bdRightToLeft
+    Caption = '  '#1605#1588#1582#1589#1575#1578' '#1605#1705#1575#1606' '#1580#1583#1610#1583'  '
+    Font.Charset = ARABIC_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentBiDiMode = False
+    ParentFont = False
+    TabOrder = 0
+    DesignSize = (
+      346
+      321)
+    object Label2: TLabel
+      Left = 31
+      Top = 18
+      Width = 284
+      Height = 13
+      BiDiMode = bdRightToLeft
+      Caption = #1606#1575#1605' '#1605#1705#1575#1606' '#1580#1583#1610#1583'('#1575#1606#1576#1575#1585#1548#1602#1601#1587#1607#1548#1608#1610#1578#1585#1610#1606#1548#1705#1605#1583' '#1608' ...) '#1581#1578#1605#1575#1611' '#1576#1575#1610#1583' '#1608#1575#1585#1583' '#1588#1608#1583
+      Font.Charset = ARABIC_CHARSET
+      Font.Color = clWindowFrame
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentBiDiMode = False
+      ParentFont = False
+    end
+    object Label1: TLabel
+      Left = 252
+      Top = 53
+      Width = 72
+      Height = 13
+      BiDiMode = bdRightToLeft
+      Caption = '*'#1606#1575#1605' '#1605#1705#1575#1606'        :'
+      Font.Charset = ARABIC_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentBiDiMode = False
+      ParentFont = False
+    end
+    object Label16: TLabel
+      Left = 255
+      Top = 92
+      Width = 69
+      Height = 13
+      Caption = #1570#1583#1585#1587' '#1605#1705#1575#1606'     :'
+      Font.Charset = ARABIC_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label17: TLabel
+      Left = 253
+      Top = 219
+      Width = 71
+      Height = 13
+      Caption = #1578#1604#1601#1606' '#1605#1705#1575#1606'       :'
+      Font.Charset = ARABIC_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label20: TLabel
+      Left = 251
+      Top = 260
+      Width = 73
+      Height = 13
+      Caption = #1605#1587#1608#1608#1604' '#1605#1705#1575#1606'   :'
+      Font.Charset = ARABIC_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object eanbarname: TsuiEdit
+      Left = 17
+      Top = 52
+      Width = 192
+      Height = 19
+      UIStyle = WinXP
+      BorderColor = 6842472
+      Color = clMenu
+      Font.Charset = ARABIC_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      MaxLength = 30
+      ParentFont = False
+      TabOrder = 0
+    end
+    object etelephon: TsuiEdit
+      Left = 17
+      Top = 216
+      Width = 192
+      Height = 19
+      UIStyle = WinXP
+      BorderColor = 6842472
+      Color = clMenu
+      Font.Charset = ARABIC_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      MaxLength = 12
+      ParentFont = False
+      TabOrder = 2
+      OnKeyPress = etelephonKeyPress
+    end
+    object emasool: TsuiEdit
+      Left = 17
+      Top = 258
+      Width = 192
+      Height = 19
+      UIStyle = WinXP
+      BorderColor = 6842472
+      BiDiMode = bdRightToLeft
+      Color = clMenu
+      Font.Charset = ARABIC_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      MaxLength = 30
+      ParentBiDiMode = False
+      ParentFont = False
+      TabOrder = 3
+    end
+    object suiButton8: TsuiButton
+      Left = 66
+      Top = 293
+      Width = 45
+      Height = 25
+      BiDiMode = bdRightToLeft
+      ParentColor = False
+      Font.Charset = ARABIC_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      Caption = #1582#1585#1608#1580
+      AutoSize = False
+      ParentBiDiMode = False
+      ParentFont = False
+      FileTheme = frm_main.suiFileTheme1
+      UIStyle = FromThemeFile
+      TabOrder = 5
+      Transparent = False
+      ModalResult = 0
+      FocusedRectMargin = 2
+      Layout = blGlyphLeft
+      Spacing = 4
+      MouseContinuouslyDownInterval = 100
+      OnClick = suiButton8Click
+      ResHandle = 0
+    end
+    object sbtaeed: TsuiButton
+      Left = 19
+      Top = 293
+      Width = 45
+      Height = 25
+      BiDiMode = bdRightToLeft
+      ParentColor = False
+      Font.Charset = ARABIC_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      Caption = #1578#1575#1610#1610#1583
+      AutoSize = False
+      ParentBiDiMode = False
+      ParentFont = False
+      FileTheme = frm_main.suiFileTheme1
+      UIStyle = FromThemeFile
+      TabOrder = 4
+      Transparent = False
+      ModalResult = 0
+      FocusedRectMargin = 2
+      Layout = blGlyphLeft
+      Spacing = 4
+      MouseContinuouslyDownInterval = 100
+      OnClick = sbtaeedClick
+      ResHandle = 0
+    end
+    object eadress: TTeMemo
+      Left = 16
+      Top = 92
+      Width = 192
+      Height = 109
+      Alignment = taRightJustify
+      BiDiMode = bdLeftToRight
+      Font.Charset = ARABIC_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      MaxLength = 50
+      ParentBiDiMode = False
+      ParentFont = False
+      ScrollBars = ssVertical
+      TabOrder = 1
+      ThemeObject = 'default'
+    end
+  end
+end

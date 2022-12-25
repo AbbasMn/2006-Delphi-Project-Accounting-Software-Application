@@ -1,0 +1,28 @@
+unit unt_ajnase_vorodi_be_eftetahie;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, DB, Grids, DBGrids;
+
+type
+  Tfrm_ajnase_vorodi_be_eftetahie = class(TForm)
+    DBGrid3: TDBGrid;
+    DataSource1: TDataSource;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frm_ajnase_vorodi_be_eftetahie: Tfrm_ajnase_vorodi_be_eftetahie;
+
+implementation
+
+uses unt_DataM_joziate_taraz;
+
+{$R *.dfm}
+
+end.

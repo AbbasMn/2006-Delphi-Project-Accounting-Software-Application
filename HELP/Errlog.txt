@@ -1,0 +1,8 @@
+Microsoft HTML Help Compiler 4.74.8702
+
+Compiling e:\FINALH~2\HELP\fasle aval-mavarede jadid\HELP1.chm
+
+HHC4006: Warning: The file "fasle aval-mavarede jadid\aval-1.htm" is already listed in the [FILES] section of the project file.
+
+
+The following files were not compiled:

@@ -1,0 +1,20 @@
+object frm_ajnase_makane_magsad: Tfrm_ajnase_makane_magsad
+  Left = 231
+  Top = 234
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
+  Caption = #1605#1588#1575#1607#1583#1607' '#1575#1580#1606#1575#1587' '#1605#1705#1575#1606' '#1605#1602#1589#1583' '#1583#1585' '#1580#1575#1576#1607' '#1580#1575#1610#1610' '#1580#1606#1587
+  ClientHeight = 446
+  ClientWidth = 688
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poDesktopCenter
+  OnShow = FormShow
+  PixelsPerInch = 96
+  TextHeight = 13
+end

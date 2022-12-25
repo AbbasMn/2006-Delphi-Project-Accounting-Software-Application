@@ -1,0 +1,7 @@
+Microsoft HTML Help Compiler 4.74.8702
+
+Compiling e:\FINALH~2\HELP\(((FRO~1\Hesabdar's Help.chm
+
+
+
+The following files were not compiled:

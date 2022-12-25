@@ -1,0 +1,192 @@
+unit unt_emale_darsadie_geymat_roye_hame;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, Mask, ExtCtrls, SUIButton, PDJ_XPC;
+
+type
+  Tfrm_emale_darsadie_geymat_roye_hame = class(TForm)
+    L_sherkat: TLabel;
+    L_type: TLabel;
+    G_darsad: TGroupBox;
+    Label8: TLabel;
+    E_darsad_sod: TEdit;
+    pmolaforforosh: TPDJXPMemo;
+    suiBno: TsuiButton;
+    suiBok: TsuiButton;
+    Label5: TLabel;
+    RadioGroup1: TRadioGroup;
+    procedure E_darsad_sodChange(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure editgeymat;
+    procedure suiBnoClick(Sender: TObject);
+    procedure suiBokClick(Sender: TObject);
+    procedure RadioGroup1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frm_emale_darsadie_geymat_roye_hame: Tfrm_emale_darsadie_geymat_roye_hame;
+
+implementation
+
+uses unt_login, Taghvim, Unt_dmanbar, Unteditgeymatjenspas, unt_main,
+  unt_DataM_sp;
+
+{$R *.dfm}
+procedure Tfrm_emale_darsadie_geymat_roye_hame.editgeymat;
+var tarikh,cod:string;
+    st:pchar;
+    geymat:real;
+    typ_darsad:string;
+begin
+    tarikh:=frm_main.L_tarikh.Caption;
+
+    if RadioGroup1.ItemIndex=0 then
+      typ_darsad:='+'
+    else
+      typ_darsad:='-';
+
+      if (trim(E_darsad_sod.Text)='') then
+        MessageBox(Handle,' œ—’œ «›“«Ì‘/ò«Â‘  ﬁÌ„  Ã‰” Ê  «—ÌŒ ¬‰ »«Ìœ Ê«—œ ‘Êœ','Œÿ« !', MB_OK or MB_ICONEXCLAMATION or MB_RTLREADING or MB_RIGHT)
+      else
+      begin
+
+        if L_type.Caption='hame_darsadi' then
+        begin
+        DataM_sp.ADOStoredProc_afzayesh_geymat_darsadi_vase_hameye_ajnas.Parameters[0].Value:=frm_main.LMDClock1.Digital.Caption;//@time  nvarchar(12),                                                                                              @time  nvarchar(12),
+        DataM_sp.ADOStoredProc_afzayesh_geymat_darsadi_vase_hameye_ajnas.Parameters[1].Value:=tarikh;//@tarikh nvarchar(12),
+
+        DataM_sp.ADOStoredProc_afzayesh_geymat_darsadi_vase_hameye_ajnas.Parameters[2].Value:=E_darsad_sod.Text;//@darsad_sod float,
+        DataM_sp.ADOStoredProc_afzayesh_geymat_darsadi_vase_hameye_ajnas.Parameters[3].Value:=pmolaforforosh.Text;//@molahezatgeymat  nvarchar(250),
+        DataM_sp.ADOStoredProc_afzayesh_geymat_darsadi_vase_hameye_ajnas.Parameters[4].Value:=typ_darsad;//@type_darsad nvarchar(1),        
+        DataM_sp.ADOStoredProc_afzayesh_geymat_darsadi_vase_hameye_ajnas.Parameters[5].Value:=' ﬁÌ„  ›—Ê‘ Â„Â «Ã‰«” œ—  «—ÌŒ '+tarikh+'---'+trim(E_darsad_sod.Text)+' '+'œ—’œ «›“«Ì‘ Ì«› ';//@amaliat  nvarchar(1000)
+        DataM_sp.ADOStoredProc_afzayesh_geymat_darsadi_vase_hameye_ajnas.ExecProc;
+
+         frm_main.l_last_op.Caption:=' ﬁÌ„  ›—Ê‘ Â„Â «Ã‰«” œ—  «—ÌŒ' +tarikh+' '+trim(E_darsad_sod.Text)+' ';
+
+         if typ_darsad='+' then
+          frm_main.l_last_op.Caption:=frm_main.l_last_op.Caption+'œ—’œ «›“«Ì‘ Ì«› '
+         else
+          frm_main.l_last_op.Caption:=frm_main.l_last_op.Caption+'œ—’œ ò«Â‘ Ì«› ';
+
+          st:=pchar(frm_main.l_last_op.Caption);
+
+          MessageBox(Handle,st,' ÊÃÂ!',MB_OK or MB_ICONINFORMATION or MB_RTLREADING or MB_RIGHT);
+
+          frm_editgeymatjens.showanbar('');
+
+          E_darsad_sod.Text:='';
+
+          Close;
+         end;
+
+
+
+
+        if L_type.Caption='sherkat_hame_darsadi' then
+        begin
+        DataM_sp.ADOStoredProc_afzayesh_geymat_darsadi_vase_ajnas_sherkat.Parameters[0].Value:=frm_main.LMDClock1.Digital.Caption;//@time  nvarchar(12),                                                                                              @time  nvarchar(12),
+        DataM_sp.ADOStoredProc_afzayesh_geymat_darsadi_vase_ajnas_sherkat.Parameters[1].Value:=tarikh;//@tarikh nvarchar(12),
+
+        DataM_sp.ADOStoredProc_afzayesh_geymat_darsadi_vase_ajnas_sherkat.Parameters[2].Value:=E_darsad_sod.Text;//@darsad_sod float,
+        DataM_sp.ADOStoredProc_afzayesh_geymat_darsadi_vase_ajnas_sherkat.Parameters[3].Value:=pmolaforforosh.Text;//@molahezatgeymat  nvarchar(250),
+        DataM_sp.ADOStoredProc_afzayesh_geymat_darsadi_vase_ajnas_sherkat.Parameters[4].Value:=' ﬁÌ„  ›—Ê‘ Â„Â '+frm_editgeymatjens.L_name_sherkat.Caption+'--'+trim(E_darsad_sod.Text)+' '+'œ—’œ «›“«Ì‘ Ì«› ';//@amaliat  nvarchar(1000)
+        DataM_sp.ADOStoredProc_afzayesh_geymat_darsadi_vase_ajnas_sherkat.Parameters[5].Value:=typ_darsad;//@type_darsad nvarchar(1),
+        DataM_sp.ADOStoredProc_afzayesh_geymat_darsadi_vase_ajnas_sherkat.Parameters[6].Value:=L_sherkat.Caption;//@shakhs_sherkat nvarchar(50)
+        DataM_sp.ADOStoredProc_afzayesh_geymat_darsadi_vase_ajnas_sherkat.ExecProc;
+
+
+
+         frm_main.l_last_op.Caption:=' ﬁÌ„  ›—Ê‘ Â„Â «Ã‰«” Œ—Ìœ«—Ì ‘œÂ «“  '+frm_editgeymatjens.L_name_sherkat.Caption+' œ—  «—ÌŒ '+tarikh+'---'+trim(E_darsad_sod.Text)+' ';
+
+         if typ_darsad='+' then
+          frm_main.l_last_op.Caption:=frm_main.l_last_op.Caption+'œ—’œ «›“«Ì‘ Ì«› '
+         else
+          frm_main.l_last_op.Caption:=frm_main.l_last_op.Caption+'œ—’œ ò«Â‘ Ì«› ';
+
+         st:=pchar(frm_main.l_last_op.Caption);
+
+
+
+          MessageBox(Handle,st,' ÊÃÂ!',MB_OK or MB_ICONINFORMATION or MB_RTLREADING or MB_RIGHT);
+
+
+          frm_editgeymatjens.showanbar(L_sherkat.Caption);
+
+          E_darsad_sod.Text:='';
+
+          Close;
+         end;
+
+      
+      end;
+end;
+
+
+
+procedure Tfrm_emale_darsadie_geymat_roye_hame.E_darsad_sodChange(
+  Sender: TObject);
+begin
+  if (L_type.Caption='hame_darsadi')and(RadioGroup1.ItemIndex=0) then
+    pmolaforforosh.Text:=' ﬁÌ„  ›—Ê‘ Â„Â «Ã‰«” œ—  «—ÌŒ'+frm_main.L_tarikh.Caption+' '+trim(E_darsad_sod.Text)+' '+'œ—’œ «›“«Ì‘ Ì«› ';
+
+  if (L_type.Caption='hame_darsadi')and(RadioGroup1.ItemIndex=1) then
+    pmolaforforosh.Text:=' ﬁÌ„  ›—Ê‘ Â„Â «Ã‰«” œ—  «—ÌŒ'+frm_main.L_tarikh.Caption+' '+trim(E_darsad_sod.Text)+' '+'œ—’œ ò«Â‘ Ì«› ';
+
+
+
+
+
+  if (L_type.Caption='sherkat_hame_darsadi')and(RadioGroup1.ItemIndex=0) then
+    pmolaforforosh.Text:=trim(' ﬁÌ„  ›—Ê‘ Â„Â «Ã‰«” Œ—Ìœ«—Ì ‘œÂ «“ '+frm_editgeymatjens.L_name_sherkat.Caption+' œ—  «—ÌŒ '+frm_main.L_tarikh.Caption+' '+trim(E_darsad_sod.Text)+' '+'œ—’œ «›“«Ì‘ Ì«› ');
+
+  if (L_type.Caption='sherkat_hame_darsadi')and(RadioGroup1.ItemIndex=1) then
+    pmolaforforosh.Text:=trim(' ﬁÌ„  ›—Ê‘ Â„Â «Ã‰«” Œ—Ìœ«—Ì ‘œÂ «“ '+frm_editgeymatjens.L_name_sherkat.Caption+' œ—  «—ÌŒ '+frm_main.L_tarikh.Caption+' '+trim(E_darsad_sod.Text)+' '+'œ—’œ ò«Â‘ Ì«› ');  
+end;
+
+procedure Tfrm_emale_darsadie_geymat_roye_hame.FormShow(Sender: TObject);
+begin
+  RadioGroup1.ItemIndex:=0;
+  E_darsad_sod.Clear;
+  pmolaforforosh.Text:='';
+end;
+
+procedure Tfrm_emale_darsadie_geymat_roye_hame.suiBnoClick(
+  Sender: TObject);
+begin
+  close;
+end;
+
+procedure Tfrm_emale_darsadie_geymat_roye_hame.suiBokClick(
+  Sender: TObject);
+begin
+  editgeymat;
+end;
+
+procedure Tfrm_emale_darsadie_geymat_roye_hame.RadioGroup1Click(
+  Sender: TObject);
+begin
+  if (L_type.Caption='hame_darsadi')and(RadioGroup1.ItemIndex=0) then
+    pmolaforforosh.Text:=' ﬁÌ„  ›—Ê‘ Â„Â «Ã‰«” œ—  «—ÌŒ'+frm_main.L_tarikh.Caption+' '+trim(E_darsad_sod.Text)+' '+'œ—’œ «›“«Ì‘ Ì«› ';
+
+  if (L_type.Caption='hame_darsadi')and(RadioGroup1.ItemIndex=1) then
+    pmolaforforosh.Text:=' ﬁÌ„  ›—Ê‘ Â„Â «Ã‰«” œ—  «—ÌŒ'+frm_main.L_tarikh.Caption+' '+trim(E_darsad_sod.Text)+' '+'œ—’œ ò«Â‘ Ì«› ';
+
+
+
+
+
+  if (L_type.Caption='sherkat_hame_darsadi')and(RadioGroup1.ItemIndex=0) then
+    pmolaforforosh.Text:=trim(' ﬁÌ„  ›—Ê‘ Â„Â «Ã‰«” Œ—Ìœ«—Ì ‘œÂ «“ '+frm_editgeymatjens.L_name_sherkat.Caption+' œ—  «—ÌŒ '+frm_main.L_tarikh.Caption+' '+trim(E_darsad_sod.Text)+' '+'œ—’œ «›“«Ì‘ Ì«› ');
+
+  if (L_type.Caption='sherkat_hame_darsadi')and(RadioGroup1.ItemIndex=1) then
+    pmolaforforosh.Text:=trim(' ﬁÌ„  ›—Ê‘ Â„Â «Ã‰«” Œ—Ìœ«—Ì ‘œÂ «“ '+frm_editgeymatjens.L_name_sherkat.Caption+' œ—  «—ÌŒ '+frm_main.L_tarikh.Caption+' '+trim(E_darsad_sod.Text)+' '+'œ—’œ ò«Â‘ Ì«› ');
+end;
+
+end.

@@ -1,0 +1,56 @@
+unit Unt_getcheck;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, ExtCtrls, SUIForm,
+  SUIButton;
+
+type
+  Tfrm_grtcheck = class(TForm)
+    suifactorshakhs: TsuiForm;
+    GroupBox1: TGroupBox;
+    suiButton6: TsuiButton;
+    suiButton1: TsuiButton;
+
+    procedure SeSkinButton5Click(Sender: TObject);
+    procedure suiButton6Click(Sender: TObject);
+    procedure suiButton1Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frm_grtcheck: Tfrm_grtcheck;
+
+implementation
+
+uses unt_datamodule2, unt_chek_factor;
+
+{$R *.dfm}
+
+
+
+procedure Tfrm_grtcheck.SeSkinButton5Click(Sender: TObject);
+begin
+  close;
+end;
+
+procedure Tfrm_grtcheck.suiButton6Click(Sender: TObject);
+begin
+  close;
+end;
+
+procedure Tfrm_grtcheck.suiButton1Click(Sender: TObject);
+begin
+
+ DataModule2.ADOQuery1.SQL.Text:='select  * from forosh_jens where daryaft_chek<>0 ';
+ DataModule2.ADOQuery1.Open;
+ DataModule2.ADOQuery1.ExecSQL;
+ frm_chek_factor.QuickRep1.Preview;
+end;
+
+end.

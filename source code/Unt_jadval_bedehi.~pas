@@ -1,0 +1,34 @@
+unit Unt_jadval_bedehi;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, dxCore, dxButtons, Grids, DBGrids, SUIDBCtrls, ExtCtrls, SUIForm,
+  DB;
+
+type
+  TFrm_jadval_bedehi = class(TForm)
+    suiForm1: TsuiForm;
+    suiDbjens: TsuiDBGrid;
+    dxToolButton1: TdxToolButton;
+    DataSource1: TDataSource;
+    procedure show;
+    procedure FormShow(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Frm_jadval_bedehi: TFrm_jadval_bedehi;
+
+implementation
+
+uses unt_datamodule1, unt_main;
+
+{$R *.df}
+
+
+end.

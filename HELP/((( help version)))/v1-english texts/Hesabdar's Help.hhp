@@ -1,0 +1,84 @@
+[OPTIONS]
+Compatibility=1.1 or later
+Compiled file=Hesabdar's Help.chm
+Contents file=Hesabdar's Help.hhc
+Index file=Hesabdar's Help.hhk
+Binary Index=Yes
+Flat=Yes
+Create CHI file=Yes
+Enhanced decompilation=Yes
+Binary TOC=Yes
+Full-text search=Yes
+Language=0x0429
+Title=Hesabdar's Help
+Error log file=Errlog.txt
+Default Window=main
+
+[WINDOWS]
+main="Hesabdar's Help","Hesabdar's Help.hhc",,"sarfasl.htm","sarfasl.htm",,,,,0x10521,240,0x184E,[50,5,850,1405],,0x3000,,0,0,1,0
+
+[FILES]
+AVAL.htm
+aval-1.htm
+aval-2.htm
+aval-3.htm
+aval-4.htm
+aval-5.htm
+aval-6.htm
+aval-7.htm
+aval-8.htm
+aval-9.htm
+aval-10.htm
+charom.htm
+charom1.htm
+charom2.htm
+charom3.htm
+charom4.htm
+dahom.htm
+dahom1.htm
+dahom2.htm
+dahom3.htm
+dahom4.htm
+dahom5.htm
+dahom6.htm
+dahom7.htm
+dahom8.htm
+dahom9.htm
+dovom.htm
+dovom1.htm
+dovom2.htm
+dovom3.htm
+dovom4.htm
+haftom.htm
+hashtom.htm
+hashtom1.htm
+hashtom2.htm
+hashtom3.htm
+hashtom4.htm
+hashtom5.htm
+nohom.htm
+nohom1.htm
+nohom2.htm
+nohom3.htm
+nohom4.htm
+nohom5.htm
+nohom6.htm
+nohom7.htm
+nohom8.htm
+nohom9.htm
+panjom.htm
+sevom.htm
+sevom1.htm
+sevom2.htm
+sevom3.htm
+sevom4.htm
+sheshom.htm
+sheshom1.htm
+sheshom2.htm
+sheshom3.htm
+sheshom4.htm
+sheshom5.htm
+sheshom6.htm
+sheshom7.htm
+yazdahom.htm
+sarfasl.htm

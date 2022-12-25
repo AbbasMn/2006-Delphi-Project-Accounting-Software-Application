@@ -1,0 +1,61 @@
+  frm_kharidhaye_shakhs.ShowModal;
+  frm_bede_bestan.ShowModal;
+  Frm_pardakht_bedehi.ShowModal;
+   frm_variz_be_sarmaye.ShowModal;
+
+
+  frm_add_bank1.L_type2.Caption:='variz_be_bank';
+  frm_add_bank1.L_sandog.Visible:=false;
+
+  frm_add_bank1.DBLookupComboBox3.Visible:=false;
+
+  frm_add_bank1.ShowModal;
+
+
+
+
+
+   Frm_khorojha_az_sandog.L_type.Caption:='geyre_motefarege';
+   Frm_khorojha_az_sandog.L_type_main.Caption:='bank';
+
+  DataModule_gozaresh_tarkibi.ADOQuery_sandog.SQL.Text:='select * from T_sandog_name  order by sandog';
+  DataModule_gozaresh_tarkibi.ADOQuery_sandog.Open;
+
+   Frm_khorojha_az_sandog.ShowModal;
+
+
+
+
+
+  frm_add_bank1.L_type2.Caption:='bardasht-be_sandog';
+  frm_add_bank1.L_sandog.Visible:=true;
+
+  frm_add_bank1.DBLookupComboBox3.Visible:=true;
+  GroupBox5.Enabled:=true;
+
+  frm_add_bank1.ShowModal;   Frm_khorojha_az_sandog.L_type.Caption:='geyre_motefarege';
+   Frm_khorojha_az_sandog.L_type_main.Caption:='sandog';
+
+  DataModule_gozaresh_tarkibi.ADOQuery_sandog.SQL.Text:='select * from T_sandog_name  order by sandog';
+  DataModule_gozaresh_tarkibi.ADOQuery_sandog.Open;
+
+  Frm_khorojha_az_sandog.ShowModal;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,156 @@
+object frm_eslah_vahed: Tfrm_eslah_vahed
+  Left = 296
+  Top = 170
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsDialog
+  Caption = #1575#1589#1604#1575#1581' '#1608#1575#1581#1583' '
+  ClientHeight = 389
+  ClientWidth = 418
+  Color = clBtnFace
+  Constraints.MinHeight = 50
+  Constraints.MinWidth = 130
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poDesktopCenter
+  Scaled = False
+  OnShow = FormShow
+  DesignSize = (
+    418
+    389)
+  PixelsPerInch = 96
+  TextHeight = 13
+  object L_name: TLabel
+    Left = 9
+    Top = 19
+    Width = 37
+    Height = 13
+    Caption = 'L_name'
+    Visible = False
+  end
+  object Label1: TLabel
+    Left = 328
+    Top = 54
+    Width = 71
+    Height = 13
+    BiDiMode = bdRightToLeft
+    Caption = '*'#1608#1575#1581#1583' '#1580#1583#1610#1583'     :'
+    ParentBiDiMode = False
+  end
+  object Label2: TLabel
+    Left = 328
+    Top = 14
+    Width = 73
+    Height = 13
+    BiDiMode = bdRightToLeft
+    Caption = #1580#1587#1578#1580#1608#1610' '#1608#1575#1581#1583':'
+    ParentBiDiMode = False
+  end
+  object Enewsal: TEdit
+    Left = 169
+    Top = 49
+    Width = 150
+    Height = 22
+    BiDiMode = bdRightToLeft
+    Font.Charset = ARABIC_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    MaxLength = 15
+    ParentBiDiMode = False
+    ParentFont = False
+    TabOrder = 1
+  end
+  object suiButton6: TsuiButton
+    Left = 48
+    Top = 48
+    Width = 81
+    Height = 25
+    Font.Charset = ARABIC_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    Caption = #1575#1589#1604#1575#1581' '#1608#1575#1581#1583
+    AutoSize = False
+    ParentFont = False
+    FileTheme = frm_main.suiFileTheme1
+    UIStyle = WinXP
+    TabOrder = 2
+    Transparent = False
+    ModalResult = 0
+    FocusedRectMargin = 2
+    Layout = blGlyphLeft
+    Spacing = 4
+    MouseContinuouslyDownInterval = 100
+    OnClick = suiButton6Click
+    ResHandle = 0
+  end
+  object E_name: TEdit
+    Left = 170
+    Top = 10
+    Width = 149
+    Height = 21
+    BiDiMode = bdRightToLeft
+    MaxLength = 10
+    ParentBiDiMode = False
+    TabOrder = 0
+    OnChange = E_nameChange
+  end
+  object suiDBGrid1: TsuiDBGrid
+    Left = 4
+    Top = 78
+    Width = 410
+    Height = 307
+    TabStop = False
+    Anchors = [akLeft, akTop, akRight, akBottom]
+    BiDiMode = bdRightToLeft
+    BorderStyle = bsNone
+    Color = clBtnFace
+    Ctl3D = True
+    DataSource = DataSource1
+    FixedColor = clMenu
+    Font.Charset = ARABIC_CHARSET
+    Font.Color = clBlack
+    Font.Height = -15
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection]
+    ParentBiDiMode = False
+    ParentCtl3D = False
+    ParentFont = False
+    ReadOnly = True
+    TabOrder = 3
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clBlack
+    TitleFont.Height = -11
+    TitleFont.Name = 'Tahoma'
+    TitleFont.Style = []
+    UIStyle = FromThemeFile
+    BorderColor = clBlack
+    FocusedColor = clNavy
+    SelectedColor = clYellow
+    FontColor = clBlack
+    TitleFontColor = clBlack
+    FixedBGColor = clMenu
+    BGColor = clBtnFace
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'vahed'
+        Title.Alignment = taCenter
+        Title.Caption = #1608#1575#1581#1583' '#1580#1606#1587
+        Width = 400
+        Visible = True
+      end>
+  end
+  object DataSource1: TDataSource
+    DataSet = Dmlistha.ADOQuery_vahed
+    Left = 73
+    Top = 113
+  end
+end

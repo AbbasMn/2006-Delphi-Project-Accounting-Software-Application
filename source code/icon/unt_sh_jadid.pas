@@ -1,0 +1,164 @@
+unit unt_sh_jadid;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, ExtCtrls, SUIForm, StdCtrls;
+
+type
+  Tfrm_foroshande_jadid = class(TForm)
+    suiForm1: TsuiForm;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    e_name: TEdit;
+    E_family: TEdit;
+    e_telephon_hamrah: TEdit;
+    Button1: TButton;
+    Button2: TButton;
+    Label4: TLabel;
+    Label5: TLabel;
+    E_telephon_kar: TEdit;
+    E_telephon_manzel: TEdit;
+    l_type: TLabel;
+    L_edit: TLabel;
+    procedure Button2Click(Sender: TObject);
+    function check:boolean;
+    function check_exist:boolean;
+    procedure Button1Click(Sender: TObject);
+    procedure update_shakhs(s:string);
+    procedure e_telephon_hamrahKeyPress(Sender: TObject; var Key: Char);
+    procedure E_telephon_karKeyPress(Sender: TObject; var Key: Char);
+    procedure E_telephon_manzelKeyPress(Sender: TObject; var Key: Char);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frm_foroshande_jadid: Tfrm_foroshande_jadid;
+
+implementation
+
+uses unt_main, unt_DataMo_shakhs;
+
+{$R *.dfm}
+procedure Tfrm_foroshande_jadid.update_shakhs(s:string);
+begin
+ if s='fo' then
+ begin
+  DataMo_shakhs.ADOQ_edit_foroshande.sql.Text:='update t_foroshande set tel_hamrah='+QuotedStr(e_telephon_hamrah.Text)+',tel_kar='+QuotedStr(E_telephon_kar.Text)+', tel_manzel='+QuotedStr(E_telephon_manzel.Text)+
+  ' where name='+QuotedStr(e_name.Text)+' and family='+QuotedStr(E_family.Text);
+  DataMo_shakhs.ADOQ_edit_foroshande.ExecSQL;
+ end
+ else
+ begin
+  DataMo_shakhs.ADOQ_edit_kharidar.SQL.Text:='update t_kharidar set tel_hamrah='+QuotedStr(e_telephon_hamrah.Text)+',tel_kar='+QuotedStr(E_telephon_kar.Text)+', tel_manzel='+QuotedStr(E_telephon_manzel.Text)+
+  ' where name='+QuotedStr(e_name.Text)+' and family='+QuotedStr(E_family.Text);
+  DataMo_shakhs.ADOQ_edit_kharidar.ExecSQL;
+ end;
+
+
+end;
+function Tfrm_foroshande_jadid.check_exist:boolean;
+begin
+ if l_type.Caption='forosh' then
+ begin
+    DataMo_shakhs.ADOQ__foroshande.SQL.Text:='select * from T_foroshande where name='+QuotedStr(e_name.Text)+' and family='+QuotedStr(E_family.Text);
+    DataMo_shakhs.ADOQ__foroshande.Open;
+    if DataMo_shakhs.ADOQ__foroshande.RecordCount>0 then
+    begin
+      check_exist:=false;
+      MessageBox(Handle,pchar('„‘Œ’«  ¬ﬁ«Ì << '+e_name.Text+' --- '+E_family.Text+' >> ﬁ»·¬Ê«—œ ‘œÂ «” .'),'Œÿ« !',MB_OK or MB_ICONEXCLAMATION or MB_RIGHT or MB_RTLREADING);
+    end
+    else
+    check_exist:=true;
+ end
+ else
+ begin
+    DataMo_shakhs.ADOQ_kharidar.SQL.Text:='select * from T_kharidar where name='+QuotedStr(e_name.Text)+' and family='+QuotedStr(E_family.Text);
+    DataMo_shakhs.ADOQ_kharidar.Open;
+    if DataMo_shakhs.ADOQ_kharidar.RecordCount>0 then
+    begin
+      check_exist:=false;
+      MessageBox(Handle,pchar('„‘Œ’«  ¬ﬁ«Ì << '+e_name.Text+' --- '+E_family.Text+' >> ﬁ»·¬Ê«—œ ‘œÂ «” .'),'Œÿ« !',MB_OK or MB_ICONEXCLAMATION or MB_RIGHT or MB_RTLREADING);
+    end
+    else
+    check_exist:=true;
+ end
+end;
+function Tfrm_foroshande_jadid.check:boolean;
+begin
+ if (e_name.Text='') or (E_family.Text='') then
+ begin
+    MessageBox(Handle,'‰«„ Ê ‰«„ Œ«‰Ê«œêÌ »«Ìœ Ê«—œ ‘Ê‰œ.','Œÿ« !',MB_OK or MB_ICONEXCLAMATION or MB_RIGHT or MB_RTLREADING);
+    check:=false;
+ end
+ else
+  check:=true;
+end;
+
+procedure Tfrm_foroshande_jadid.Button2Click(Sender: TObject);
+begin
+  close;
+end;
+
+procedure Tfrm_foroshande_jadid.Button1Click(Sender: TObject);
+begin
+if not(L_edit.Caption='editkharidar') and not(L_edit.Caption='editforoshande')then
+begin
+  if check then
+    if check_exist then
+    begin
+      if l_type.Caption='forosh' then
+        DataMo_shakhs.insert_foroshande(e_name.Text,E_family.Text,e_telephon_hamrah.Text,E_telephon_kar.Text,E_telephon_manzel.Text)
+      else
+         DataMo_shakhs.insert_kharidar(e_name.Text,E_family.Text,e_telephon_hamrah.Text,E_telephon_kar.Text,E_telephon_manzel.Text);
+      MessageBox(Handle,pchar('„‘Œ’«  ¬ﬁ«Ì << '+e_name.Text+' --- '+E_family.Text+' >> –ŒÌ—Â ‘œ.'),' ÊÃÂ !',MB_OK or MB_RIGHT or MB_RTLREADING or MB_ICONINFORMATION);
+      e_name.Text:='';
+      E_family.Text:='';
+      e_telephon_hamrah.Text:='';
+      E_telephon_kar.Text:='';
+      E_telephon_manzel.Text:='';
+    end;
+end
+else
+  begin
+    if L_edit.Caption='editkharidar' then
+    begin
+      update_shakhs('kh');
+      DataMo_shakhs.show_kharidar;
+    end
+    else
+    begin
+      update_shakhs('fo');
+      DataMo_shakhs.show_foroshande;
+    end;
+    close;
+  end;
+end;
+
+procedure Tfrm_foroshande_jadid.e_telephon_hamrahKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+   if not (key in['0'..'9',#8]) then
+   key:=#0;
+end;
+
+procedure Tfrm_foroshande_jadid.E_telephon_karKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+   if not (key in['0'..'9',#8]) then
+   key:=#0;
+end;
+
+procedure Tfrm_foroshande_jadid.E_telephon_manzelKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+   if not (key in['0'..'9',#8]) then
+   key:=#0;
+end;
+
+end.

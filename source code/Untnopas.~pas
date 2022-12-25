@@ -1,0 +1,51 @@
+unit Untnopas;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, se_controls, KsSkinButtons, KsSkinLabels, StdCtrls, ExtCtrls,
+  SUIForm, SUIButton;
+
+type
+  Tfrm_nopas = class(TForm)
+    suifactorshakhs: TsuiForm;
+    GroupBox1: TGroupBox;
+    suiButton6: TsuiButton;
+    suiButton1: TsuiButton;
+    procedure SeSkinButton5Click(Sender: TObject);
+    procedure suiButton1Click(Sender: TObject);
+    procedure suiButton6Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frm_nopas: Tfrm_nopas;
+
+implementation
+
+uses unt_datamodule2, unt_chek_no_pas;
+
+{$R *.dfm}
+
+procedure Tfrm_nopas.SeSkinButton5Click(Sender: TObject);
+begin
+  close;
+end;
+
+procedure Tfrm_nopas.suiButton1Click(Sender: TObject);
+begin
+  close;
+end;
+
+procedure Tfrm_nopas.suiButton6Click(Sender: TObject);
+begin
+   DataModule2.ADOQuery1.SQL.Text:='select * from forosh_jens where daryaft_chek<>0 and chek_pas="****"';
+   DataModule2.ADOQuery1.Open;
+  frm_chek_not_pas.QuickRep1.Preview;
+end;
+
+end.

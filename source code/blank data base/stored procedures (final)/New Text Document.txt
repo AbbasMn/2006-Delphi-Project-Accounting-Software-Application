@@ -1,0 +1,11 @@
+if @tedad_jozi_da_koli=0
+set @tedad_koli_mabda=0
+
+if @tedad_jozi_da_koli=0
+set @tedad_koli_magsad=0
+
+if @tedad_jozi_da_koli<>0
+set @tedad_koli_mabda=@tedad_kole_jabejaei / @tedad_jozi_da_koli
+
+if @tedad_jozi_da_koli<>0
+set @tedad_koli_magsad =@tedad_kole_jabejaei / @tedad_jozi_da_koli

@@ -1,0 +1,29 @@
+unit Unt_list_anbarforosh;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, DB, Grids, DBGrids, SUIDBCtrls, SUIMgr;
+
+type
+  Tfrm_list_anbarforosh = class(TForm)
+    suiDBGrid1: TsuiDBGrid;
+    suiFileTheme1: TsuiFileTheme;
+    DataSanbar: TDataSource;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frm_list_anbarforosh: Tfrm_list_anbarforosh;
+
+implementation
+
+uses 
+
+{$R *.dfm}
+
+end.

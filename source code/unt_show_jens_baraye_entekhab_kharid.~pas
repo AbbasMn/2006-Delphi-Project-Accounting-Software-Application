@@ -1,0 +1,142 @@
+unit unt_show_jens_baraye_entekhab_kharid;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, Grids, DBGrids, SUIDBCtrls, StdCtrls, DB, LMDControl,
+  LMDBaseControl, LMDBaseGraphicButton, LMDCustomSpeedButton,
+  LMDSpeedButton;
+
+type
+  Tfrm_show_jens_baraye_entekhab_kharid = class(TForm)
+    suiDBGrid1: TsuiDBGrid;
+    Label7: TLabel;
+    esearch22: TEdit;
+    DataSource1: TDataSource;
+    LMDSpeedButton1123: TLMDSpeedButton;
+    E_barcod: TEdit;
+    Label5: TLabel;
+    Label9: TLabel;
+    esearch: TEdit;
+    procedure esearch22Change(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure E_barcodChange(Sender: TObject);
+    procedure esearchChange(Sender: TObject);
+    procedure LMDSpeedButton1123Click(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frm_show_jens_baraye_entekhab_kharid: Tfrm_show_jens_baraye_entekhab_kharid;
+
+implementation
+
+uses Untdmanbarexit, Untviewanbar, unt_add_jens_to_pishkharid,
+  unt_vorode_jense_motefarege, Unt_sefaresh_jadid;
+
+{$R *.dfm}
+
+procedure Tfrm_show_jens_baraye_entekhab_kharid.esearch22Change(
+  Sender: TObject);
+begin
+ Dmanbarexite.ADOanbarcala.Locate('calaname',esearch22.Text,[loPartialKey]);
+end;
+
+procedure Tfrm_show_jens_baraye_entekhab_kharid.FormShow(Sender: TObject);
+begin
+  Dmanbarexite.ADOanbarcala.SQL.Text:='select * from Tanbar_jens_kolli  order by  calaname,calacod';
+  Dmanbarexite.ADOanbarcala.Open;
+
+  E_barcod.Text:='';
+  esearch.Text:='';
+  E_barcod.SetFocus;
+end;
+
+procedure Tfrm_show_jens_baraye_entekhab_kharid.FormClose(Sender: TObject;
+  var Action: TCloseAction);
+begin
+if Frm_sefaresh_jadid<>nil then
+     Frm_sefaresh_jadid.l_jans_name.Caption:=Dmanbarexite.ADOanbarcalacalaname.AsString;
+
+if Frm_add_jens_to_pishkharid<>nil then
+begin
+   Frm_add_jens_to_pishkharid.l_jans_name.Caption:=Dmanbarexite.ADOanbarcalacalaname.AsString;
+   Frm_add_jens_to_pishkharid.L_barcod.Caption:=Dmanbarexite.ADOanbarcalabarcod.AsString;
+   Frm_add_jens_to_pishkharid.e_code_sherkati.Text:=Dmanbarexite.ADOanbarcalacode_sherkati.AsString;
+
+   if Dmanbarexite.ADOanbarcalatedad_jozi_da_koli.AsFloat<>0 then
+   begin
+    Frm_add_jens_to_pishkharid.l_vahed_koli.Caption:=Dmanbarexite.ADOanbarcalavahed_koli.AsString;
+    Frm_add_jens_to_pishkharid.L_vahed_jozi.Caption:=Dmanbarexite.ADOanbarcalavahed_jozi.AsString;
+    Frm_add_jens_to_pishkharid.l_tedad_J_dar_k.Caption:=Dmanbarexite.ADOanbarcalatedad_jozi_da_koli.AsString;
+    Frm_add_jens_to_pishkharid.RadioGroup_vahed_type.ItemIndex:=0;
+    Frm_add_jens_to_pishkharid.RadioGroup_vahed_type.Enabled:=false;
+   end
+   else
+   begin
+    Frm_add_jens_to_pishkharid.l_vahed_koli.Caption:='';
+    Frm_add_jens_to_pishkharid.L_vahed_joji_jozi.Caption:=Dmanbarexite.ADOanbarcalavahed_jozi.AsString;
+    Frm_add_jens_to_pishkharid.l_tedad_J_dar_k.Caption:='';
+    Frm_add_jens_to_pishkharid.RadioGroup_vahed_type.ItemIndex:=1;
+    Frm_add_jens_to_pishkharid.RadioGroup_vahed_type.Enabled:=false;
+   end;
+end;
+if frm_vorode_jense_motefarege<>nil then
+begin
+   frm_vorode_jense_motefarege.l_jans_name.Caption:=Dmanbarexite.ADOanbarcalacalaname.AsString;
+   frm_vorode_jense_motefarege.L_barcod.Caption:=Dmanbarexite.ADOanbarcalabarcod.AsString;
+   frm_vorode_jense_motefarege.e_code_sherkati.Text:=Dmanbarexite.ADOanbarcalacode_sherkati.AsString;
+
+   if Dmanbarexite.ADOanbarcalatedad_jozi_da_koli.AsFloat<>0 then
+   begin
+    frm_vorode_jense_motefarege.l_vahed_koli.Caption:=Dmanbarexite.ADOanbarcalavahed_koli.AsString;
+    frm_vorode_jense_motefarege.L_vahed_jozi.Caption:=Dmanbarexite.ADOanbarcalavahed_jozi.AsString;
+    frm_vorode_jense_motefarege.l_tedad_J_dar_k.Caption:=Dmanbarexite.ADOanbarcalatedad_jozi_da_koli.AsString;
+    frm_vorode_jense_motefarege.RadioGroup_vahed_type.ItemIndex:=0;
+    frm_vorode_jense_motefarege.RadioGroup_vahed_type.Enabled:=false;
+   end
+   else
+   begin
+    frm_vorode_jense_motefarege.l_vahed_koli.Caption:='';
+    frm_vorode_jense_motefarege.L_vahed_joji_jozi.Caption:=Dmanbarexite.ADOanbarcalavahed_jozi.AsString;
+    frm_vorode_jense_motefarege.l_tedad_J_dar_k.Caption:='';
+    frm_vorode_jense_motefarege.RadioGroup_vahed_type.ItemIndex:=1;
+    frm_vorode_jense_motefarege.RadioGroup_vahed_type.Enabled:=false;
+   end;
+
+   if frm_vorode_jense_motefarege.CheckBox2.Checked then
+   begin
+    frm_vorode_jense_motefarege.L_kharid_az.Caption:=Dmanbarexite.ADOanbarcalashakhs_sherkat.AsString;
+    frm_vorode_jense_motefarege.CheckBox1.Checked:=false;
+   end
+   else
+   begin
+    frm_vorode_jense_motefarege.CheckBox1.Checked:=true;
+   end;
+end;
+end;
+
+procedure Tfrm_show_jens_baraye_entekhab_kharid.E_barcodChange(
+  Sender: TObject);
+begin
+ Dmanbarexite.ADOanbarcala.Locate('barcod',E_barcod.Text,[loPartialKey]);
+end;
+
+procedure Tfrm_show_jens_baraye_entekhab_kharid.esearchChange(
+  Sender: TObject);
+begin
+  Dmanbarexite.ADOanbarcala.Locate('code_sherkati',esearch.Text,[loPartialKey]);
+end;
+
+procedure Tfrm_show_jens_baraye_entekhab_kharid.LMDSpeedButton1123Click(
+  Sender: TObject);
+begin
+  close;
+end;
+
+end.

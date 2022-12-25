@@ -1,0 +1,391 @@
+object frm_list_pardakht_ha: Tfrm_list_pardakht_ha
+  Left = 400
+  Top = 129
+  BorderStyle = bsDialog
+  Caption = #1662#1585#1583#1575#1582#1578#1607#1575#1610' '#1576#1583#1607#1705#1575#1585#1575#1606
+  ClientHeight = 515
+  ClientWidth = 463
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = False
+  Position = poDesktopCenter
+  Scaled = False
+  OnShow = FormShow
+  DesignSize = (
+    463
+    515)
+  PixelsPerInch = 96
+  TextHeight = 13
+  object suiButton6: TsuiButton
+    Left = 2
+    Top = 488
+    Width = 45
+    Height = 25
+    Font.Charset = ARABIC_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    Caption = #1578#1575#1610#1610#1583
+    AutoSize = False
+    ParentFont = False
+    UIStyle = WinXP
+    TabOrder = 4
+    Transparent = False
+    ModalResult = 0
+    FocusedRectMargin = 2
+    Layout = blGlyphLeft
+    Spacing = 4
+    MouseContinuouslyDownInterval = 100
+    OnClick = suiButton6Click
+    ResHandle = 0
+  end
+  object suiButton7: TsuiButton
+    Left = 49
+    Top = 488
+    Width = 45
+    Height = 25
+    Font.Charset = ARABIC_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    Caption = #1582#1585#1608#1580
+    AutoSize = False
+    ParentFont = False
+    UIStyle = WinXP
+    TabOrder = 5
+    Transparent = False
+    ModalResult = 0
+    FocusedRectMargin = 2
+    Layout = blGlyphLeft
+    Spacing = 4
+    MouseContinuouslyDownInterval = 100
+    OnClick = suiButton7Click
+    ResHandle = 0
+  end
+  object GroupBox2: TGroupBox
+    Left = 2
+    Top = 401
+    Width = 459
+    Height = 84
+    Anchors = [akTop]
+    BiDiMode = bdRightToLeft
+    Caption = '  '#1605#1588#1582#1589#1575#1578' '#1586#1605#1575#1606#1610' '#1662#1585#1583#1575#1582#1578' '#1607#1575'  '
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentBiDiMode = False
+    ParentFont = False
+    TabOrder = 3
+    DesignSize = (
+      459
+      84)
+    object Label2: TLabel
+      Left = 309
+      Top = 57
+      Width = 33
+      Height = 13
+      Anchors = [akTop]
+      Caption = ' '#1605#1575#1607'    :'
+    end
+    object Label1: TLabel
+      Left = 310
+      Top = 25
+      Width = 34
+      Height = 13
+      Anchors = [akTop]
+      Caption = ' '#1587#1575#1604'  :'
+    end
+    object dbsal: TDBLookupComboBox
+      Left = 105
+      Top = 23
+      Width = 111
+      Height = 21
+      Anchors = [akTop]
+      BiDiMode = bdRightToLeft
+      Ctl3D = True
+      Font.Charset = ARABIC_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      KeyField = 'sal'
+      ListField = 'sal'
+      ListSource = DataSource2
+      ParentBiDiMode = False
+      ParentCtl3D = False
+      ParentFont = False
+      TabOrder = 0
+    end
+    object scmah: TComboBox
+      Left = 105
+      Top = 54
+      Width = 111
+      Height = 21
+      Style = csDropDownList
+      Anchors = [akTop]
+      ItemHeight = 13
+      TabOrder = 1
+      Items.Strings = (
+        #1601#1585#1608#1585#1583#1610#1606
+        #1575#1585#1583#1610#1576#1607#1588#1578
+        #1582#1585#1583#1575#1583
+        #1578#1610#1585
+        #1605#1585#1583#1575#1583
+        #1588#1607#1585#1610#1608#1585
+        #1605#1607#1585
+        #1570#1576#1575#1606
+        #1570#1584#1585
+        #1583#1610' '
+        #1576#1607#1605#1606
+        #1575#1587#1601#1606#1583
+        '')
+    end
+  end
+  object GroupBox4: TGroupBox
+    Left = 2
+    Top = 401
+    Width = 459
+    Height = 84
+    BiDiMode = bdRightToLeft
+    Caption = '  '#1605#1588#1582#1589#1575#1578' '#1586#1605#1575#1606#1610' '#1662#1585#1583#1575#1582#1578' '#1607#1575'  '
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentBiDiMode = False
+    ParentFont = False
+    TabOrder = 2
+    DesignSize = (
+      459
+      84)
+    object Label6: TLabel
+      Left = 310
+      Top = 33
+      Width = 34
+      Height = 13
+      Anchors = [akTop, akRight]
+      Caption = ' '#1587#1575#1604'  :'
+    end
+    object dbsal2: TDBLookupComboBox
+      Left = 105
+      Top = 31
+      Width = 111
+      Height = 21
+      Anchors = [akTop, akRight]
+      BiDiMode = bdRightToLeft
+      Ctl3D = True
+      Font.Charset = ARABIC_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      KeyField = 'sal'
+      ListField = 'sal'
+      ListSource = DataSource2
+      ParentBiDiMode = False
+      ParentCtl3D = False
+      ParentFont = False
+      TabOrder = 0
+    end
+  end
+  object GroupBox3: TGroupBox
+    Left = 2
+    Top = 307
+    Width = 459
+    Height = 94
+    BiDiMode = bdRightToLeft
+    Caption = '   '#1606#1608#1593' '#1711#1586#1575#1585#1588' '#1711#1610#1585#1610'  '
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clBlack
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentBiDiMode = False
+    ParentFont = False
+    TabOrder = 1
+    DesignSize = (
+      459
+      94)
+    object RadioGroup1: TRadioGroup
+      Left = 232
+      Top = 18
+      Width = 215
+      Height = 70
+      Anchors = [akTop]
+      BiDiMode = bdRightToLeft
+      Caption = '  '#1576#1575#1586#1607' '#1586#1605#1575#1606#1610'  '
+      ItemIndex = 0
+      Items.Strings = (
+        ' '#1705#1604' '#1587#1575#1604#1607#1575' '
+        ' '#1587#1575#1604
+        #1587#1575#1604' '#1608' '#1605#1575#1607)
+      ParentBiDiMode = False
+      TabOrder = 0
+      TabStop = True
+      OnClick = RadioGroup1Click
+    end
+    object RadioGroup2: TRadioGroup
+      Left = 12
+      Top = 18
+      Width = 215
+      Height = 70
+      Caption = '  '#1605#1588#1575#1607#1583#1607' '#1711#1586#1575#1585#1588' / '#1575#1585#1587#1575#1604' '#1576#1607' '#1662#1585#1610#1606#1578#1585'  '
+      Items.Strings = (
+        #1605#1588#1575#1607#1583#1607' '#1711#1586#1575#1585#1588
+        #1575#1585#1587#1575#1604' '#1576#1607' '#1662#1585#1610#1606#1578#1585)
+      TabOrder = 1
+    end
+  end
+  object GroupBox1: TGroupBox
+    Left = 2
+    Top = 1
+    Width = 459
+    Height = 303
+    BiDiMode = bdRightToLeft
+    Caption = '  '#1605#1588#1582#1589#1575#1578' '#1588#1582#1589'/'#1588#1585#1705#1578'  '
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentBiDiMode = False
+    ParentFont = False
+    TabOrder = 0
+    DesignSize = (
+      459
+      303)
+    object Label8: TLabel
+      Left = 118
+      Top = 22
+      Width = 84
+      Height = 13
+      Anchors = [akTop, akRight]
+      Caption = #1705#1583' '#1588#1582#1589'/'#1588#1585#1705#1578':'
+      Font.Charset = ARABIC_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object Label4: TLabel
+      Left = 335
+      Top = 22
+      Width = 86
+      Height = 13
+      Alignment = taRightJustify
+      Anchors = [akTop, akRight]
+      BiDiMode = bdRightToLeft
+      Caption = #1606#1575#1605' '#1588#1582#1589'/'#1588#1585#1705#1578':'
+      Font.Charset = ARABIC_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentBiDiMode = False
+      ParentFont = False
+    end
+    object suiDBGrid1: TsuiDBGrid
+      Left = 5
+      Top = 47
+      Width = 449
+      Height = 251
+      TabStop = False
+      Anchors = [akLeft, akTop, akRight, akBottom]
+      BiDiMode = bdRightToLeft
+      BorderStyle = bsNone
+      Color = clBtnFace
+      Ctl3D = True
+      DataSource = DataSource1
+      FixedColor = clMenu
+      Font.Charset = ARABIC_CHARSET
+      Font.Color = clBlack
+      Font.Height = -15
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgRowSelect, dgAlwaysShowSelection]
+      ParentBiDiMode = False
+      ParentCtl3D = False
+      ParentFont = False
+      ReadOnly = True
+      TabOrder = 0
+      TitleFont.Charset = DEFAULT_CHARSET
+      TitleFont.Color = clBlack
+      TitleFont.Height = -11
+      TitleFont.Name = 'Tahoma'
+      TitleFont.Style = []
+      UIStyle = FromThemeFile
+      BorderColor = clBlack
+      FocusedColor = clNavy
+      SelectedColor = clYellow
+      FontColor = clBlack
+      TitleFontColor = clBlack
+      FixedBGColor = clMenu
+      BGColor = clBtnFace
+      Columns = <
+        item
+          Alignment = taCenter
+          Expanded = False
+          FieldName = 'code'
+          Title.Alignment = taCenter
+          Title.Caption = #1705#1583
+          Width = 32
+          Visible = True
+        end
+        item
+          Expanded = False
+          FieldName = 'shahrforoshande'
+          Title.Alignment = taCenter
+          Title.Caption = ' '#1605#1588#1582#1589#1575#1578' '#1662#1585#1583#1575#1582#1578' '#1705#1606#1606#1583#1607
+          Width = 352
+          Visible = True
+        end>
+    end
+    object e_cod: TEdit
+      Left = 62
+      Top = 17
+      Width = 52
+      Height = 22
+      Anchors = [akTop, akRight]
+      Font.Charset = ARABIC_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      MaxLength = 30
+      ParentFont = False
+      TabOrder = 1
+      OnChange = e_codChange
+      OnKeyPress = e_codKeyPress
+    end
+    object E_name: TEdit
+      Left = 215
+      Top = 18
+      Width = 116
+      Height = 21
+      Anchors = [akTop, akRight]
+      MaxLength = 10
+      TabOrder = 2
+      OnChange = E_nameChange
+    end
+  end
+  object DataSource1: TDataSource
+    DataSet = DataModule1.ADOQuery3
+    Left = 101
+    Top = 50
+  end
+  object DataSource2: TDataSource
+    DataSet = DataModule1.ADOQsaljadid
+    Left = 50
+    Top = 206
+  end
+end

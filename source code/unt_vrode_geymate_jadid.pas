@@ -1,0 +1,248 @@
+unit unt_vrode_geymate_jadid;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, StdCtrls, Mask, ExtCtrls, SUIButton, PDJ_XPC,math;
+
+type
+  Tfrm_vrode_geymate_jadid = class(TForm)
+    GroupBox1: TGroupBox;
+    Ljensname: TLabel;
+    Lgeymatghabli: TLabel;
+    Lcodjens: TLabel;
+    Label4: TLabel;
+    Label6: TLabel;
+    Label3: TLabel;
+    pmolaforforosh: TPDJXPMemo;
+    suiBok: TsuiButton;
+    suiBno: TsuiButton;
+    Label5: TLabel;
+    RadioGroup2: TRadioGroup;
+    G_gheire_darsad: TGroupBox;
+    Label1: TLabel;
+    Egeymatjadid: TEdit;
+    G_darsad: TGroupBox;
+    Label8: TLabel;
+    E_darsad_sod: TEdit;
+    Label2: TLabel;
+    L_name_sherkat: TLabel;
+    Label7: TLabel;
+    L_kharid_jens: TLabel;
+    L_type: TLabel;
+    RadioGroup1: TRadioGroup;
+    procedure FormShow(Sender: TObject);
+    procedure RadioGroup2Click(Sender: TObject);
+    procedure EgeymatjadidChange(Sender: TObject);
+    procedure clear;
+    procedure suiBnoClick(Sender: TObject);
+    procedure suiBokClick(Sender: TObject);
+    procedure editgeymat;
+    procedure type_;
+    procedure E_darsad_sodChange(Sender: TObject);
+    procedure RadioGroup1Click(Sender: TObject);
+    procedure EgeymatjadidKeyPress(Sender: TObject; var Key: Char);
+    procedure E_darsad_sodKeyPress(Sender: TObject; var Key: Char);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frm_vrode_geymate_jadid: Tfrm_vrode_geymate_jadid;
+
+implementation
+
+uses Unt_dmanbar, unt_main, unt_login, Taghvim, Unteditgeymatjenspas,
+  unt_datam_sp_eslahe_forosh;
+
+{$R *.dfm}
+procedure Tfrm_vrode_geymate_jadid.editgeymat;
+var tarikh,cod:string;
+    st:pchar;
+    geymat,par:real;
+
+begin
+    par:=0;
+    
+    tarikh:=frm_main.L_tarikh.Caption;
+    cod:=Lcodjens.Caption;
+    if RadioGroup2.ItemIndex=1 then
+    begin
+      if (Ljensname.Caption='') or (trim(Egeymatjadid.Text)='') then
+        MessageBox(Handle,'Ã‰” ° ﬁÌ„  ›—Ê‘ ÃœÌœ Ã‰”  »«Ìœ Ê«—œ ‘Êœ','Œÿ« !', MB_OK or MB_ICONEXCLAMATION or MB_RTLREADING or MB_RIGHT)
+      else
+       begin
+          par:=1;
+          geymat:=strtofloat(trim(Egeymatjadid.Text));
+
+         st:=pchar(trim(' ﬁÌ„  ›—Ê‘ Ã“∆Ì Ã‰” œ—  «—ÌŒ '+tarikh+' «“ '+' '+Lgeymatghabli.Caption+' '+ ' »Â '+' '+trim(Egeymatjadid.Text)+' '+' €ÌÌ— ÅÌœ«ò—œ'));
+
+
+         frm_main.l_last_op.Caption:='  €ÌÌ— ﬁÌ„  ›—Ê‘ Ã“∆Ì Ã‰” '+Ljensname.Caption;
+
+//////////////////////////////////////////////////////////////////////////////
+
+
+          datam_sp_eslahe_forosh.ADOStoredProc_eslahe_geymat_geymat.Parameters[0].Value:=frm_editgeymatjens.l_review.Caption;//@id float,
+          datam_sp_eslahe_forosh.ADOStoredProc_eslahe_geymat_geymat.Parameters[1].Value:=tarikh;//@tarikh_eslah nvarchar(12),
+          datam_sp_eslahe_forosh.ADOStoredProc_eslahe_geymat_geymat.Parameters[2].Value:=geymat;//@geymat float,
+          datam_sp_eslahe_forosh.ADOStoredProc_eslahe_geymat_geymat.Parameters[3].Value:=trim(pmolaforforosh.Text);//@molahezat_geymat nvarchar(250),
+          datam_sp_eslahe_forosh.ADOStoredProc_eslahe_geymat_geymat.Parameters[4].Value:=par;//@par float,
+          datam_sp_eslahe_forosh.ADOStoredProc_eslahe_geymat_geymat.Parameters[5].Value:=frm_main.LMDClock1.Digital.Caption;//@time nvarchar(10),
+          datam_sp_eslahe_forosh.ADOStoredProc_eslahe_geymat_geymat.Parameters[6].Value:=frm_main.L_tarikh.Caption;//@tarikh nvarchar(12),
+          datam_sp_eslahe_forosh.ADOStoredProc_eslahe_geymat_geymat.Parameters[7].Value:=frm_main.l_last_op.Caption+' («›“«Ì‘ »Â ’Ê—  Ê—Êœ ﬁÌ„  ›—Ê‘ ÃœÌœ) '+pmolaforforosh.Text;//@amaliat nvarchar(1000)
+          datam_sp_eslahe_forosh.ADOStoredProc_eslahe_geymat_geymat.ExecProc;
+
+//////////////////////////////////////////////////////////////////////////////
+
+         if L_type.Caption='jens_taki' then
+          frm_editgeymatjens.showanbar('')
+         else
+          frm_editgeymatjens.showanbar(L_name_sherkat.Caption);
+
+         Egeymatjadid.Text:='';
+         MessageBox(Handle,st,' ÊÃÂ!',MB_OK or MB_ICONINFORMATION or MB_RTLREADING or MB_RIGHT);
+         clear;
+         Close;
+       end;
+    end
+    else
+    begin
+      if (Ljensname.Caption='')or (trim(E_darsad_sod.Text)='') then
+        MessageBox(Handle,'Ã‰” ° œ—’œ «›“«Ì‘/ò«Â‘  ﬁÌ„  ›—Ê‘ Ã‰” »«Ìœ Ê«—œ ‘Êœ','Œÿ« !', MB_OK or MB_ICONEXCLAMATION or MB_RTLREADING or MB_RIGHT)
+      else
+      begin
+        par:=1;
+
+        geymat:=StrToFloat(Lgeymatghabli.Caption);
+
+
+
+       if RadioGroup1.ItemIndex=0 then
+        geymat:=geymat+roundto((StrToFloat(E_darsad_sod.Text)/100)*geymat,0)
+       else
+        geymat:=geymat-roundto((StrToFloat(E_darsad_sod.Text)/100)*geymat,0); 
+
+
+
+
+        frm_main.l_last_op.Caption:='  €ÌÌ— ﬁÌ„  ›—Ê‘ Ã“∆Ì Ã‰” '+Ljensname.Caption;
+
+        st:=pchar(trim(' ﬁÌ„  ›—Ê‘ Ã“∆Ì Ã‰” œ— '+tarikh+' «“ '+' '+Lgeymatghabli.Caption+ ' »Â '+' '+FloatToStr(geymat)+' '+'  €ÌÌ— ÅÌœ«ò—œ '));
+
+
+//////////////////////////////////////////////////////////////////////////////
+
+
+          datam_sp_eslahe_forosh.ADOStoredProc_eslahe_geymat_geymat.Parameters[0].Value:=frm_editgeymatjens.l_review.Caption;//@id float,
+          datam_sp_eslahe_forosh.ADOStoredProc_eslahe_geymat_geymat.Parameters[1].Value:=tarikh;//@tarikh_eslah nvarchar(12),
+          datam_sp_eslahe_forosh.ADOStoredProc_eslahe_geymat_geymat.Parameters[2].Value:=geymat;//@geymat float,
+          datam_sp_eslahe_forosh.ADOStoredProc_eslahe_geymat_geymat.Parameters[3].Value:=trim(pmolaforforosh.Text);//@molahezat_geymat nvarchar(250),
+          datam_sp_eslahe_forosh.ADOStoredProc_eslahe_geymat_geymat.Parameters[4].Value:=par;//@par float,
+          datam_sp_eslahe_forosh.ADOStoredProc_eslahe_geymat_geymat.Parameters[5].Value:=frm_main.LMDClock1.Digital.Caption;//@time nvarchar(10),
+          datam_sp_eslahe_forosh.ADOStoredProc_eslahe_geymat_geymat.Parameters[6].Value:=frm_main.L_tarikh.Caption;//@tarikh nvarchar(12),
+          datam_sp_eslahe_forosh.ADOStoredProc_eslahe_geymat_geymat.Parameters[7].Value:=pmolaforforosh.Text;//@amaliat nvarchar(1000)
+          datam_sp_eslahe_forosh.ADOStoredProc_eslahe_geymat_geymat.ExecProc;
+
+//////////////////////////////////////////////////////////////////////////////
+
+         if L_type.Caption='jens_taki' then
+          frm_editgeymatjens.showanbar('')
+         else
+          frm_editgeymatjens.showanbar(L_name_sherkat.Caption);
+
+        E_darsad_sod.Text:='';
+
+        MessageBox(Handle,st,' ÊÃÂ!',MB_OK or MB_ICONINFORMATION or MB_RTLREADING or MB_RIGHT);
+         clear;
+         Close;        
+      end;
+    end;
+end;
+//////////////////
+
+procedure Tfrm_vrode_geymate_jadid.type_;
+begin
+  if RadioGroup2.ItemIndex=0 then
+  begin
+    G_darsad.Visible:=true;
+    G_gheire_darsad.Visible:=false;
+  end
+  else
+  begin
+    G_darsad.Visible:=false;
+    G_gheire_darsad.Visible:=true;
+  end;
+end;
+
+
+////////////////////
+procedure Tfrm_vrode_geymate_jadid.clear;
+begin
+ Egeymatjadid.Text:='';
+ pmolaforforosh.Text:='';
+end;
+
+procedure Tfrm_vrode_geymate_jadid.FormShow(Sender: TObject);
+begin
+
+  RadioGroup2.ItemIndex:=1;
+  RadioGroup1.ItemIndex:=0;
+  type_;
+end;
+
+procedure Tfrm_vrode_geymate_jadid.RadioGroup2Click(Sender: TObject);
+begin
+  type_;
+end;
+
+procedure Tfrm_vrode_geymate_jadid.EgeymatjadidChange(Sender: TObject);
+begin
+pmolaforforosh.Text:=' ﬁÌ„  ›—Ê‘ Ã“∆Ì Ã‰” œ—  «—ÌŒ '+frm_main.L_tarikh.Caption+' «“ '+' '+Lgeymatghabli.Caption+' '+' »Â '+' '+trim(Egeymatjadid.Text)+' '+' €ÌÌ— ÅÌœ«ò—œ';
+end;
+
+procedure Tfrm_vrode_geymate_jadid.suiBnoClick(Sender: TObject);
+begin
+  clear;
+  close;
+end;
+
+procedure Tfrm_vrode_geymate_jadid.suiBokClick(Sender: TObject);
+begin
+  editgeymat;
+end;
+
+procedure Tfrm_vrode_geymate_jadid.E_darsad_sodChange(Sender: TObject);
+begin
+  if RadioGroup1.ItemIndex=0 then
+    pmolaforforosh.Text:=' ﬁÌ„  ›—Ê‘ Ã“∆Ì Ã‰” œ—  «—ÌŒ'+frm_main.L_tarikh.Caption+' '+trim(E_darsad_sod.Text)+' '+'œ—’œ «›“«Ì‘ Ì«› '
+  else
+    pmolaforforosh.Text:=' ﬁÌ„  ›—Ê‘ Ã“∆Ì Ã‰” œ—  «—ÌŒ'+frm_main.L_tarikh.Caption+' '+trim(E_darsad_sod.Text)+' '+'œ—’œ ò«Â‘ Ì«› ';
+end;
+
+procedure Tfrm_vrode_geymate_jadid.RadioGroup1Click(Sender: TObject);
+begin
+  if RadioGroup1.ItemIndex=0 then
+    pmolaforforosh.Text:=' ﬁÌ„  ›—Ê‘ Ã“∆Ì Ã‰” œ—  «—ÌŒ'+frm_main.L_tarikh.Caption+' '+trim(E_darsad_sod.Text)+' '+'œ—’œ «›“«Ì‘ Ì«› '
+  else
+    pmolaforforosh.Text:=' ﬁÌ„  ›—Ê‘ Ã“∆Ì Ã‰” œ—  «—ÌŒ'+frm_main.L_tarikh.Caption+' '+trim(E_darsad_sod.Text)+' '+'œ—’œ ò«Â‘ Ì«› ';
+end;
+
+procedure Tfrm_vrode_geymate_jadid.EgeymatjadidKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+ if not (key in['0'..'9',#8]) then
+   key:=#0;
+end;
+
+procedure Tfrm_vrode_geymate_jadid.E_darsad_sodKeyPress(Sender: TObject;
+  var Key: Char);
+begin
+ if not (key in['0'..'9','.',#8]) then
+   key:=#0;
+end;
+
+end.

@@ -1,0 +1,24 @@
+unit unt_print_pardakht_shoma;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs;
+
+type
+  Tfrm_print_pardakht_shoma = class(TForm)
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frm_print_pardakht_shoma: Tfrm_print_pardakht_shoma;
+
+implementation
+
+{$R *.dfm}
+
+end.

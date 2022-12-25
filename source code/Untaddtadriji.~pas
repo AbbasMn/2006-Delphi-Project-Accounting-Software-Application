@@ -1,0 +1,39 @@
+unit Untaddtadriji;
+
+interface
+
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
+  Dialogs, DBCtrls, SUIButton, StdCtrls, PDJ_XPC, SUIPageControl,
+  SUITabControl, ExtCtrls, SUIForm, DB;
+
+type
+  TFrm_addtadriji = class(TForm)
+    suiForm1: TsuiForm;
+    suiPageControl1: TsuiPageControl;
+    suicomboshahr: TsuiTabSheet;
+    grpvorodnow: TGroupBox;
+    Label3: TLabel;
+    Label1: TLabel;
+    Label7: TLabel;
+    pmmollahezat: TPDJXPMemo;
+    suiButton5: TsuiButton;
+    dbanbar: TDBLookupComboBox;
+    btaeed: TsuiButton;
+    DataSource1: TDataSource;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Frm_addtadriji: TFrm_addtadriji;
+
+implementation
+
+uses Unt_dmanbar;
+
+{$R *.dfm}
+
+end.
